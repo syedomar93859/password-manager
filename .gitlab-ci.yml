@@ -14,8 +14,6 @@ stages:
 
 build-job:
   stage: build
-  tags:
-    - whatever  # Make sure this matches your runner's tag
   script:
     # Install dependencies
     - apt-get update && apt-get install -y wget unzip
@@ -32,8 +30,6 @@ build-job:
 
 test-job:
   stage: test
-  tags:
-    - whatever  # Make sure this matches your runner's tag
   script:
     # Install dependencies including xvfb for headless JavaFX tests
     - apt-get update && apt-get install -y wget unzip xvfb
