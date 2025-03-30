@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import java.net.URL?>
@@ -23,14 +22,14 @@
                 </Label>
                 <ImageView fitHeight="84.0" fitWidth="96.0" layoutX="364.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" rotate="16.8">
                     <image>
-                        <Image url="@../../../../../../../../../../Downloads/pngegg.png" />
+                        <Image url="@LogoSquirrel.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="84.0" fitWidth="96.0" layoutX="32.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true" rotate="-148.7">
-                    <image>
-                        <Image url="@../../../../../../../../../../Downloads/pngegg.png" />
-                    </image>
-                </ImageView>
+            <ImageView fitHeight="84.0" fitWidth="96.0" layoutX="45.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" rotate="144.5">
+               <image>
+                  <Image url="@LogoSquirrel.png" />
+               </image>
+            </ImageView>
             </children>
          <stylesheets>
 
