@@ -1,10 +1,8 @@
 image: eclipse-temurin:17-jdk
 
 variables:
-  # Cache downloaded dependencies and plugins between builds
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
-# Cache downloaded dependencies and plugins between builds
 cache:
   paths:
     - .m2/repository
@@ -14,30 +12,37 @@ stages:
   - build
   - test
 
-# For projects that use Maven
 build-job:
   stage: build
+  tags:
+    - whatever  # Make sure this matches your runner's tag
   script:
-    # Download and extract JavaFX SDK
+    # Install dependencies
     - apt-get update && apt-get install -y wget unzip
+    # Download and extract JavaFX SDK
     - wget https://download2.gluonhq.com/openjfx/22/openjfx-22_linux-x64_bin-sdk.zip
     - unzip openjfx-22_linux-x64_bin-sdk.zip -d /opt
     - export PATH_TO_FX=/opt/javafx-sdk-22/lib
     
     # Build the project with JavaFX modules
-    - mvn compile -B --quiet
+    - mvn compile -B
   artifacts:
     paths:
       - target/
 
 test-job:
   stage: test
+  tags:
+    - whatever  # Make sure this matches your runner's tag
   script:
-    # Set up JavaFX for headless testing
+    # Install dependencies including xvfb for headless JavaFX tests
     - apt-get update && apt-get install -y wget unzip xvfb
+    # Download and extract JavaFX SDK
     - wget https://download2.gluonhq.com/openjfx/22/openjfx-22_linux-x64_bin-sdk.zip
     - unzip openjfx-22_linux-x64_bin-sdk.zip -d /opt
     - export PATH_TO_FX=/opt/javafx-sdk-22/lib
     
     # Run tests with virtual display for JavaFX
     - xvfb-run mvn test -B
+  dependencies:
+    - build-job
