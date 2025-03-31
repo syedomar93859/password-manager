@@ -1,7 +1,8 @@
-package com.cpsc329pm.BackendStuff;
+package com.cpsc329pm.BackendStuff.oldstuff;
 
 import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Scanner;
 
 public class DataManagement {
     private static HashMap<String, String[]> loginInfo = new HashMap<>();

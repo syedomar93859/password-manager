@@ -1,11 +1,11 @@
-package com.cpsc329pm.BackendStuff;
+package com.cpsc329pm.BackendStuff.oldstuff;
 
-import java.security.SecureRandom;
-import java.security.spec.KeySpec;
+import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
-import javax.crypto.SecretKeyFactory;
+import java.security.spec.KeySpec;
 
 // Credit to https://www.baeldung.com/java-password-hashing for helping me understand how to hash and salt properly
 public class Encryption {
