@@ -30,6 +30,29 @@ public class Encryption {
         String saltPass = Base64.getEncoder().encodeToString(saltString);
         return saltPass + ":" + hashPass;
     }
+    public static boolean VerifyPassword(String password, String hash){
+        String[] parts = hash.split(":");
+        if (parts.length != 2){
+            throw new IllegalArgumentException("Hash is invalid");
+        }
+        byte[] DecryptedSalt = Base64.getDecoder().decode(parts[0]);
+        byte[] DecryptedHash = Base64.getDecoder().decode(parts[1]);
+
+        KeySpec spec = new PBEKeySpec(password.toCharArray(), DecryptedSalt, 10000, 256);
+        byte[] newHash;
+        try {
+            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+            newHash = factory.generateSecret(spec).getEncoded();
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            throw new RuntimeException("There was an error while verifying password", e);
+        }
+        if (newHash == DecryptedHash){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
 
 
