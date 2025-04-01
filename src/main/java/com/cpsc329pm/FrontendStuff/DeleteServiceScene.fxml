@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -13,7 +14,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.FrontendStuff.MainPage">
    <children>
-      <AnchorPane prefHeight="140.0" prefWidth="600.0" styleClass="backgroundColor" stylesheets="@login-colour.css">
+      <AnchorPane prefHeight="140.0" prefWidth="600.0" styleClass="backgroundColor">
          <children>
             <Label layoutX="167.0" layoutY="44.0" prefHeight="46.0" prefWidth="306.0" text="𝗦𝗘𝗖𝗨𝗥𝗘 𝗦𝗤𝗨𝗜𝗥𝗥𝗘𝗟𝗦">
                <font>
@@ -29,7 +30,7 @@
                         </Stop>
                         <Stop offset="1.0">
                            <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
+                              <Color red="0.239215686917305" green="0.5568627715110779" blue="1.0" />
                            </color>
                         </Stop>
                      </stops>
@@ -45,13 +46,33 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.9263657957244655">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.239215686917305" green="0.5568627715110779" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
-         </children></AnchorPane>
+         </children>
+         <stylesheets>
+            <URL value="@login-colour.css" />
+            <URL value="@DeleteService.css" />
+         </stylesheets></AnchorPane>
       <Label layoutX="87.0" layoutY="204.0" text="Name of Service" />
       <TextField layoutX="58.0" layoutY="227.0" prefHeight="26.0" prefWidth="472.0" promptText="Name" />
       <Label layoutX="77.0" layoutY="292.0" prefHeight="17.0" prefWidth="147.0" text="Username" />
       <TextField layoutX="56.0" layoutY="320.0" prefHeight="26.0" prefWidth="472.0" promptText="Username" />
-      <JFXButton layoutX="91.0" layoutY="507.0" prefHeight="33.0" prefWidth="146.0" style="-fx-background-color: #3c8bff;" text="DELETE">
+      <JFXButton layoutX="91.0" layoutY="507.0" prefHeight="33.0" prefWidth="146.0" style="-fx-background-color: #eb5a5a;" text="DELETE">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9263657957244655">
                <stops>
@@ -69,7 +90,7 @@
             </LinearGradient>
          </textFill>
       </JFXButton>
-      <JFXButton layoutX="356.0" layoutY="507.0" prefHeight="33.0" prefWidth="152.0" style="-fx-background-color: #3c8bff;" text="BACK">
+      <JFXButton layoutX="356.0" layoutY="507.0" prefHeight="33.0" prefWidth="152.0" style="-fx-background-color: #eb5a5a;" text="BACK">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9263657957244655">
                <stops>
