@@ -15,7 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" styleClass="backgroundColor" stylesheets="@LogInScene-AnchorPane.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.BackendStuff.Login">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" styleClass="backgroundColor" stylesheets="@LoginScene-AnchorPane.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.BackendStuff.Login">
     <children>
         <Pane layoutX="-10.0" layoutY="-5.0" prefHeight="617.0" prefWidth="532.0" styleClass="backgroundColor">
             <children>
@@ -50,7 +50,7 @@
 
             <URL value="@login-colour.css" />
          </stylesheets></Pane>
-        <JFXButton layoutX="670.0" layoutY="518.0" prefHeight="47.0" prefWidth="172.0" style="-fx-background-color: #3c8bff;" text="LOGIN">
+        <JFXButton layoutX="675.0" layoutY="518.0" prefHeight="47.0" prefWidth="172.0" style="-fx-background-color: #3c8bff;" text="LOGIN">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9263657957244655">
                <stops>
