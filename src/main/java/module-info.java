@@ -2,6 +2,7 @@ module com.example.cpsc329pm {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires com.fasterxml.jackson.databind;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -11,6 +12,5 @@ module com.example.cpsc329pm {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens com.cpsc329pm to javafx.fxml;
-    exports com.cpsc329pm;
+    opens com.cpsc329pm.BackendStuff to com.fasterxml.jackson.databind;
 }
