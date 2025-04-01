@@ -23,13 +23,24 @@
                     <font>
                         <Font name="System Bold" size="34.0" />
                     </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
                 </Label>
-                <ImageView fitHeight="64.0" fitWidth="59.0" layoutX="358.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true" rotate="16.8">
-                    <image>
-                        <Image url="@LogoSquirrel.png" />
-                    </image>
-                </ImageView>
-            <ImageView fitHeight="64.0" fitWidth="69.0" layoutX="54.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true" rotate="144.5">
+            <ImageView fitHeight="52.0" fitWidth="49.0" layoutX="206.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@LogoSquirrel.png" />
                </image>
