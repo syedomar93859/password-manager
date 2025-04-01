@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -52,9 +53,7 @@
       <Label layoutX="82.0" layoutY="350.0" prefHeight="17.0" prefWidth="179.0" text="Password" />
       <Label layoutX="86.0" layoutY="267.0" prefHeight="17.0" prefWidth="147.0" text="Username" />
       <TextField layoutX="60.0" layoutY="287.0" prefHeight="26.0" prefWidth="472.0" promptText="Username" />
-      <TextField layoutX="60.0" layoutY="369.0" prefHeight="26.0" prefWidth="471.0" promptText="Password" />
       <Label layoutX="84.0" layoutY="431.0" prefHeight="17.0" prefWidth="179.0" text="Confirm Password" />
-      <TextField layoutX="58.0" layoutY="451.0" prefHeight="26.0" prefWidth="471.0" promptText="Confirm Password" />
       <JFXButton layoutX="93.0" layoutY="538.0" prefHeight="33.0" prefWidth="146.0" style="-fx-background-color: #3c8bff;" text="ADD">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.9263657957244655">
@@ -111,5 +110,7 @@
             <Image url="@Gearss.png" />
          </image>
       </ImageView>
+      <PasswordField layoutX="60.0" layoutY="369.0" prefHeight="26.0" prefWidth="471.0" promptText="Password" />
+      <PasswordField layoutX="58.0" layoutY="451.0" prefHeight="26.0" prefWidth="471.0" promptText="Confirm Password" />
    </children>
 </AnchorPane>
