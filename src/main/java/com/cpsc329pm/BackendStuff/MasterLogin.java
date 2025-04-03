@@ -14,6 +14,8 @@ public class MasterLogin {
      * @return
      */
     boolean register(String username, String masterPassword) {
+
+
         return false;
     }
 
@@ -142,5 +144,15 @@ public class MasterLogin {
      */
     List<String> getUsernames() {
         return null;
+    }
+
+    /**
+     * Check if user has input valid username and password
+     * @param username the username that the user input
+     * @param password the password that the user input
+     * @return  return whether the inputs were valid or not
+     */
+    boolean validateInput(String username, String password) {
+        return false;
     }
 }
