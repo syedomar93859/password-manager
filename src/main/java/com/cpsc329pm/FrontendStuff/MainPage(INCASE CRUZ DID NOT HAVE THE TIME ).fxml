@@ -19,6 +19,6 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@MainPage(INCASE%20CRUZ%20DID%20NOT%20HAVE%20THE%20TIME%20).css" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
