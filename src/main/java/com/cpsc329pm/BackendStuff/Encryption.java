@@ -1,4 +1,4 @@
-package com.cpsc329pm.BackendStuff.oldstuff;
+package com.cpsc329pm.BackendStuff;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -11,7 +11,7 @@ import java.util.Base64;
 // Credit to https://www.baeldung.com/java-password-hashing for helping me understand how to hash and salt properly
 public class Encryption {
 
-    private static String HashingSalting(String password) {
+    public static String HashingSalting(String password) {
         SecureRandom Rand = new SecureRandom();
         byte[] saltString = new byte[16];
         Rand.nextBytes(saltString);

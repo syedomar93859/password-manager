@@ -46,7 +46,7 @@ public class DataStorage {
     }
 
     public void addData(String platform, String username, String password) {
-        data.add(new Data(platform, username, password));
+        data.add(new Data(platform, username, Encryption.HashingSalting(password)));
         saveToJSON();
     }
 }
