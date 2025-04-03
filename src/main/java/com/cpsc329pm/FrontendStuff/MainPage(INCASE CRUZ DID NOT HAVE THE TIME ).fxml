@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox prefHeight="400.0" prefWidth="136.0" style="-fx-border-color: black;" styleClass="backgroundColor" stylesheets="@LoginScene-Pane.css" BorderPane.alignment="CENTER">
          <children>
@@ -27,12 +27,12 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="backgroundColor" stylesheets="@MainPage(INCASE%20CRUZ%20DID%20NOT%20HAVE%20THE%20TIME%20).css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="36.0" fitWidth="51.0" layoutX="200.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="36.0" fitWidth="51.0" layoutX="202.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@LogoSquirrel.png" />
                </image>
             </ImageView>
-            <Label layoutX="67.0" layoutY="149.0" prefHeight="31.0" prefWidth="312.0" text="𝗦𝗘𝗖𝗨𝗥𝗘 𝗦𝗤𝗨𝗜𝗥𝗥𝗘𝗟𝗦">
+            <Label layoutX="77.0" layoutY="207.0" prefHeight="31.0" prefWidth="312.0" text="𝗦𝗘𝗖𝗨𝗥𝗘 𝗦𝗤𝗨𝗜𝗥𝗥𝗘𝗟𝗦">
                <font>
                   <Font name="System Bold" size="34.0" />
                </font>
@@ -53,7 +53,7 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Label layoutX="158.0" layoutY="210.0" prefHeight="46.0" prefWidth="150.0" text="MAIN PAGE">
+            <Label layoutX="159.0" layoutY="293.0" prefHeight="46.0" prefWidth="150.0" text="MAIN PAGE">
                <font>
                   <Font name="System Bold" size="25.0" />
                </font>
