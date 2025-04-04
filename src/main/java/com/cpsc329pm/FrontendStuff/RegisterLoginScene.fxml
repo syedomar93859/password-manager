@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -54,42 +54,6 @@
       <Label layoutX="86.0" layoutY="267.0" prefHeight="17.0" prefWidth="147.0" text="Confirm Username" />
       <TextField layoutX="60.0" layoutY="287.0" prefHeight="26.0" prefWidth="472.0" promptText="Confirm Username" />
       <Label layoutX="84.0" layoutY="431.0" prefHeight="17.0" prefWidth="179.0" text="Confirm Password" />
-      <JFXButton layoutX="93.0" layoutY="538.0" prefHeight="33.0" prefWidth="146.0" style="-fx-background-color: #d4fc79;" text="REGISTER">
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="0.9263657957244655">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.239215686917305" green="0.5568627715110779" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </JFXButton>
-      <JFXButton layoutX="358.0" layoutY="542.0" prefHeight="33.0" prefWidth="152.0" style="-fx-background-color: #96e6a1;" text="BACK">
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0" startX="0.9263657957244655">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.239215686917305" green="0.5568627715110779" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </JFXButton>
       <ImageView fitHeight="25.0" fitWidth="17.0" layoutX="65.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Lock.png" />
@@ -112,5 +76,41 @@
             <Image url="@MiniProfile.png" />
          </image>
       </ImageView>
+      <Button layoutX="93.0" layoutY="538.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="146.0" style="-fx-background-color: #d4fc79;" text="REGISTER">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.09247075766324997" green="0.38991838693618774" blue="0.8684210777282715" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button layoutX="358.0" layoutY="542.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="146.0" style="-fx-background-color: #96e6a1;" text="BACK">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.17653508484363556" green="0.28623902797698975" blue="0.9078947305679321" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
    </children>
 </AnchorPane>
