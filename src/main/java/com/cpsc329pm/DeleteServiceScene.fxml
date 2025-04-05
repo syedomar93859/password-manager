@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,9 +11,9 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.FrontendStuff.MainPage">
+<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.MainPage">
    <children>
-      <AnchorPane prefHeight="140.0" prefWidth="600.0" styleClass="backgroundColor" stylesheets="@RegisterLogin.css">
+      <AnchorPane prefHeight="140.0" prefWidth="600.0" styleClass="backgroundColor" stylesheets="@DeleteService.css">
          <children>
             <Label layoutX="167.0" layoutY="44.0" prefHeight="46.0" prefWidth="306.0" text="𝗦𝗘𝗖𝗨𝗥𝗘 𝗦𝗤𝗨𝗜𝗥𝗥𝗘𝗟𝗦">
                <font>
@@ -42,41 +41,50 @@
                   <Image url="@LogoSquirrel.png" />
                </image>
             </ImageView>
-            <Label layoutX="262.0" layoutY="90.0" prefHeight="37.0" prefWidth="76.0" text="REGISTER">
+            <Label layoutX="237.0" layoutY="98.0" prefHeight="37.0" prefWidth="126.0" text="DELETE SERVICE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.9263657957244655">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.239215686917305" green="0.5568627715110779" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
             </Label>
          </children></AnchorPane>
-      <Label layoutX="88.0" layoutY="187.0" text="Username" />
-      <TextField layoutX="60.0" layoutY="210.0" prefHeight="26.0" prefWidth="472.0" promptText="Username" />
-      <Label layoutX="82.0" layoutY="350.0" prefHeight="17.0" prefWidth="179.0" text="Password" />
-      <Label layoutX="86.0" layoutY="267.0" prefHeight="17.0" prefWidth="147.0" text="Confirm Username" />
-      <TextField layoutX="60.0" layoutY="287.0" prefHeight="26.0" prefWidth="472.0" promptText="Confirm Username" />
-      <Label layoutX="84.0" layoutY="431.0" prefHeight="17.0" prefWidth="179.0" text="Confirm Password" />
-      <ImageView fitHeight="25.0" fitWidth="17.0" layoutX="65.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Lock.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="17.0" layoutX="63.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Lock.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="60.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
+      <Label layoutX="87.0" layoutY="204.0" text="Name of Service" />
+      <TextField layoutX="58.0" layoutY="227.0" prefHeight="26.0" prefWidth="472.0" promptText="Name" />
+      <Label layoutX="77.0" layoutY="292.0" prefHeight="17.0" prefWidth="147.0" text="Username" />
+      <TextField layoutX="56.0" layoutY="320.0" prefHeight="26.0" prefWidth="472.0" promptText="Username" />
+      <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="51.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@MiniProfile.png" />
          </image>
       </ImageView>
-      <PasswordField layoutX="60.0" layoutY="369.0" prefHeight="26.0" prefWidth="471.0" promptText="Password" />
-      <PasswordField layoutX="58.0" layoutY="451.0" prefHeight="26.0" prefWidth="471.0" promptText="Confirm Password" />
-      <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="58.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="64.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Gearss.png" />
+         </image>
+      </ImageView>
+      <TextField layoutX="57.0" layoutY="425.0" prefHeight="26.0" prefWidth="475.0" promptText="Confirm Username" />
+      <Label layoutX="75.0" layoutY="398.0" prefHeight="17.0" prefWidth="147.0" text="Confirm Username" />
+      <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="49.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@MiniProfile.png" />
          </image>
       </ImageView>
-      <Button layoutX="93.0" layoutY="538.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="146.0" style="-fx-background-color: #d4fc79;" text="REGISTER">
+      <Button layoutX="91.0" layoutY="507.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="146.0" styleClass="backgroundColor" stylesheets="@DeleteService.css" text="DELETE">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -87,14 +95,14 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="0.09247075766324997" green="0.38991838693618774" blue="0.8684210777282715" />
+                        <Color red="1.0" green="1.0" blue="1.0" />
                      </color>
                   </Stop>
                </stops>
             </LinearGradient>
          </textFill>
       </Button>
-      <Button layoutX="358.0" layoutY="542.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="146.0" style="-fx-background-color: #96e6a1;" text="BACK">
+      <Button layoutX="356.0" layoutY="507.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="146.0" styleClass="backgroundColor" stylesheets="@DeleteService.css" text="BACK">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -105,7 +113,7 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="0.17653508484363556" green="0.28623902797698975" blue="0.9078947305679321" />
+                        <Color red="1.0" green="1.0" blue="1.0" />
                      </color>
                   </Stop>
                </stops>

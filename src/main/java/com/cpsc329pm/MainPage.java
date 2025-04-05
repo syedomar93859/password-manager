@@ -1,5 +1,5 @@
 
-package com.cpsc329pm.FrontendStuff;
+package com.cpsc329pm;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

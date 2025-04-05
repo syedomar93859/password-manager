@@ -1,9 +1,6 @@
-package com.cpsc329pm.BackendStuff;
+package com.cpsc329pm;
 
-import java.io.*;
 import java.util.*;
-import java.security.*;
-import javax.crypto.*;
 
 public class MasterLogin {
 

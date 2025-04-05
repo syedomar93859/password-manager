@@ -1,4 +1,4 @@
-package com.cpsc329pm.BackendStuff;
+package com.cpsc329pm;
 
 /**
  * Class representing a single login data entry with platform, username, and password.

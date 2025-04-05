@@ -1,4 +1,4 @@
-package com.cpsc329pm.BackendStuff;
+package com.cpsc329pm;
 
 import java.io.*;
 import java.util.*;
