@@ -13,4 +13,5 @@ module com.example.cpsc329pm {
     requires com.almasb.fxgl.all;
 
     opens com.cpsc329pm to com.fasterxml.jackson.databind;
+    exports com.cpsc329pm;
 }
