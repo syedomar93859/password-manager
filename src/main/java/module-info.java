@@ -12,6 +12,6 @@ module com.example.cpsc329pm {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens com.cpsc329pm to com.fasterxml.jackson.databind;
+    opens com.cpsc329pm to javafx.fxml, com.fasterxml.jackson.databind;
     exports com.cpsc329pm;
 }
