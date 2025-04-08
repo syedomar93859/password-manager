@@ -106,15 +106,30 @@ public class MasterLogin {
 
     /**
      * Authenticates login information
-     * @param username
-     * @param masterPassword
-     * @return
+     * @param username The username to authenticate
+     * @param masterPassword The password to verify
+     * @return true if authentication is successful, false otherwise
+     * @throws IllegalArgumentException if username or password is empty
      */
-    boolean authenticate(String username, String masterPassword) {
+    public boolean authenticate(String username, String masterPassword) {
+        // Validate inputs
+        if (username == null || username.trim().isEmpty()) {
+            throw new IllegalArgumentException("Username cannot be empty");
+        }
+        if (masterPassword == null || masterPassword.trim().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be empty");
+        }
 
+        // Get the stored master data
+        Data storedData = masterStorage.getMasterData();
+        
+        // Check if master data exists and username matches
+        if (storedData == null || !storedData.getUsername().equals(username)) {
+            return false;
+        }
 
-
-        return false;
+        // Verify the password
+        return Encryption.VerifyPassword(masterPassword, storedData.getPassword());
     }
 
     /**
