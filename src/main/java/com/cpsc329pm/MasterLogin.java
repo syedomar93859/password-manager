@@ -11,9 +11,7 @@ public class MasterLogin {
      * @return
      */
     static void register(String username, String masterPassword) {
-        Data master = new Data("secure squirrels", username, masterPassword);
-        DataStorage masterStorage = new DataStorage("master_login.json");
-        masterStorage.saveToJSONMaster(master);
+        
     }
 
     /**
