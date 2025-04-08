@@ -23,7 +23,7 @@ public class AddServiceSceneController {
 
             // Create a new stage
             Stage stage = new Stage();
-            stage.setTitle("Main Page");
+            stage.setTitle("Add Services");
             stage.setScene(new Scene(root));
             stage.show();
 

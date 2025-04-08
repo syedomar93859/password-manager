@@ -24,7 +24,7 @@ public class DeleteServiceSceneController {
 
             // Create a new stage
             Stage stage = new Stage();
-            stage.setTitle("Main Page");
+            stage.setTitle("Delete Services");
             stage.setScene(new Scene(root));
             stage.show();
 
