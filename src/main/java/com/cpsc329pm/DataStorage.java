@@ -7,21 +7,21 @@ import com.fasterxml.jackson.databind.*;
 
 public class DataStorage {
     private static final Logger logger = Logger.getLogger(DataStorage.class.getName());
-    private final Map<String, Data> dataMap; // Using Map for efficient lookups
+    private final Map<String, Data> dataMap;
     private final String filename;
     private final ObjectMapper mapper;
-    private boolean isDirty; // Track if data needs to be saved
+    private boolean isDirty;
 
     public DataStorage(String filename) {
         this.filename = filename;
         this.mapper = new ObjectMapper();
-        this.dataMap = new ConcurrentHashMap<>(); // Thread-safe map
+        this.dataMap = new ConcurrentHashMap<>();
         this.isDirty = false;
         loadFromJSON();
     }
 
     public void saveToJSON() {
-        if (!isDirty) return; // Only save if data has changed
+        if (!isDirty) return;
         
         try {
             List<Data> dataList = new ArrayList<>(dataMap.values());
