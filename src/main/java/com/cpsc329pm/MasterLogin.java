@@ -4,16 +4,84 @@ import java.util.*;
 
 public class MasterLogin {
     private final MasterLoginStorage masterStorage;
+    private static final int MIN_PASSWORD_LENGTH = 8;
+    private static final String[] COMMON_PASSWORDS = {
+        "password", "123456", "qwerty", "admin", "welcome",
+        "letmein", "monkey", "dragon", "baseball", "football"
+    };
 
     public MasterLogin() {
         this.masterStorage = new MasterLoginStorage();
     }
 
     /**
+     * Validates if a password meets security requirements
+     * @param password The password to validate
+     * @return true if password meets requirements, false otherwise
+     */
+    private boolean isValidPassword(String password) {
+
+        // Check minimum length
+        if (password.length() < MIN_PASSWORD_LENGTH) {
+            return false;
+        }
+
+        // Check for at least one uppercase letter
+        if (!Pattern.compile("[A-Z]").matcher(password).find()) {
+            return false;
+        }
+
+        // Check for at least one lowercase letter
+        if (!Pattern.compile("[a-z]").matcher(password).find()) {
+            return false;
+        }
+
+        // Check for at least one number
+        if (!Pattern.compile("[0-9]").matcher(password).find()) {
+            return false;
+        }
+
+        // Check for at least one special character
+        if (!Pattern.compile("[!@#$%^&*(),.?\":{}|<>]").matcher(password).find()) {
+            return false;
+        }
+
+        // Check for spaces
+        if (password.contains(" ")) {
+            return false;
+        }
+
+        // Check against common passwords
+        String lowercasePassword = password.toLowerCase();
+        for (String common : COMMON_PASSWORDS) {
+            if (lowercasePassword.contains(common)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Gets a description of password requirements
+     * @return String describing password requirements
+     */
+    public String getPasswordRequirements() {
+        return "Password must:\n" +
+               "- Be at least " + MIN_PASSWORD_LENGTH + " characters long\n" +
+               "- Contain at least one uppercase letter\n" +
+               "- Contain at least one lowercase letter\n" +
+               "- Contain at least one number\n" +
+               "- Contain at least one special character (!@#$%^&*(),.?\":{}|<>)\n" +
+               "- Not contain spaces\n" +
+               "- Not contain common words or patterns";
+    }
+
+    /**
      * Registers a new user by saving their master login credentials
      * @param username The username for the master account
      * @param masterPassword The password for the master account
-     * @throws IllegalArgumentException if username or password is empty
+     * @throws IllegalArgumentException if username or password is empty or password doesn't meet requirements
      */
     public void register(String username, String masterPassword) {
         // Validate inputs
@@ -24,8 +92,12 @@ public class MasterLogin {
             throw new IllegalArgumentException("Password cannot be empty");
         }
 
+        // Validate password strength
+        if (!isValidPassword(masterPassword)) {
+            throw new IllegalArgumentException("Password does not meet security requirements.\n" + getPasswordRequirements());
+        }
+
         // Create a new Data object with the master credentials
-        // The platform is set to "master" to identify it as a master account
         Data masterData = new Data("master", username, Encryption.HashingSalting(masterPassword));
         
         // Save the master data
