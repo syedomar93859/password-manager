@@ -6,72 +6,103 @@ import java.util.*;
 import com.fasterxml.jackson.databind.*;
 
 public class DataStorage {
+    private static final Logger logger = Logger.getLogger(DataStorage.class.getName());
+    private final Map<String, Data> dataMap; // Using Map for efficient lookups
+    private final String filename;
+    private final ObjectMapper mapper;
+    private boolean isDirty; // Track if data needs to be saved
 
-    private List<Data> data; // List to store login information
-    private String filename; // File to store/retrieve data
-    private static ObjectMapper mapper; // Jackson ObjectMapper for JSON processing
-
-    private static String masterLogin = "master_login.json";
-
-    /**
-     * Constructor initializes the storage system with a specified filename.
-     * It also attempts to load existing data from the file.
-     *
-     * @param filename The name of the JSON file used for storage.
-     */
     public DataStorage(String filename) {
         this.filename = filename;
         this.mapper = new ObjectMapper();
-        this.data = new ArrayList<>();
-        loadFromJSON(); // Load existing data if available
+        this.dataMap = new ConcurrentHashMap<>(); // Thread-safe map
+        this.isDirty = false;
+        loadFromJSON();
     }
 
-    /**
-     * Saves the current list of login information to the JSON file.
-     * If an error occurs during saving, it prints an error message.
-     */
     public void saveToJSON() {
+        if (!isDirty) return; // Only save if data has changed
+        
         try {
-            mapper.writeValue(new File(filename), data);
+            List<Data> dataList = new ArrayList<>(dataMap.values());
+            mapper.writeValue(new File(filename), dataList);
+            isDirty = false;
         } catch (IOException e) {
-            System.out.println("Error while saving data: " + e.getMessage());
+            logger.severe("Error while saving data: " + e.getMessage());
+            throw new StorageException("Failed to save data", e);
         }
     }
 
-    public void saveToJSONMaster(Data master) {
-        try {
-            mapper.writeValue(new File(filename), master);
-        } catch (IOException e) {
-            System.out.println("Error while saving master login data: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Loads login information from the JSON file if it exists.
-     * If an error occurs during loading, it prints an error message.
-     */
     public void loadFromJSON() {
         File file = new File(filename);
-        if (file.exists()) {
-            try {
-                Data[] loadedData = mapper.readValue(file, Data[].class);
-                data = new ArrayList<>();
-                Collections.addAll(data, loadedData); // Convert array to list
-            } catch (IOException e) {
-                System.out.println("Error loading data from file: " + filename);
+        if (!file.exists()) return;
+
+        try {
+            Data[] loadedData = mapper.readValue(file, Data[].class);
+            dataMap.clear();
+            for (Data data : loadedData) {
+                dataMap.put(generateKey(data.getPlatform(), data.getUsername()), data);
             }
+        } catch (IOException e) {
+            logger.severe("Error loading data from file: " + filename);
+            throw new StorageException("Failed to load data", e);
         }
     }
 
-    /**
-     * Adds new login information (platform, username, and hashed password) to storage.
-     *
-     * @param platform The name of the platform for the login credentials.
-     * @param username The username associated with the login.
-     * @param password The plaintext password (hashed before storing).
-     */
     public void addData(String platform, String username, String password) {
-        data.add(new Data(platform, username, Encryption.HashingSalting(password))); // Hash and store password
-        saveToJSON(); // Save updated data to file
+        String key = generateKey(platform, username);
+        if (dataMap.containsKey(key)) {
+            throw new DuplicateEntryException("Entry already exists for platform: " + platform + ", username: " + username);
+        }
+        
+        dataMap.put(key, new Data(platform, username, Encryption.HashingSalting(password)));
+        isDirty = true;
+    }
+
+    public Data getData(String platform, String username) {
+        return dataMap.get(generateKey(platform, username));
+    }
+
+    public void updateData(String platform, String username, String newPassword) {
+        String key = generateKey(platform, username);
+        if (!dataMap.containsKey(key)) {
+            throw new EntryNotFoundException("No entry found for platform: " + platform + ", username: " + username);
+        }
+        
+        dataMap.put(key, new Data(platform, username, Encryption.HashingSalting(newPassword)));
+        isDirty = true;
+    }
+
+    public void deleteData(String platform, String username) {
+        if (dataMap.remove(generateKey(platform, username)) != null) {
+            isDirty = true;
+        }
+    }
+
+    public List<Data> getAllData() {
+        return new ArrayList<>(dataMap.values());
+    }
+
+    private String generateKey(String platform, String username) {
+        return platform + ":" + username;
+    }
+
+    // Custom exceptions
+    public static class StorageException extends RuntimeException {
+        public StorageException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
+    public static class DuplicateEntryException extends RuntimeException {
+        public DuplicateEntryException(String message) {
+            super(message);
+        }
+    }
+
+    public static class EntryNotFoundException extends RuntimeException {
+        public EntryNotFoundException(String message) {
+            super(message);
+        }
     }
 }
