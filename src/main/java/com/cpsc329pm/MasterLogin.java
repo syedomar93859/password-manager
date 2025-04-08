@@ -3,15 +3,33 @@ package com.cpsc329pm;
 import java.util.*;
 
 public class MasterLogin {
+    private final MasterLoginStorage masterStorage;
+
+    public MasterLogin() {
+        this.masterStorage = new MasterLoginStorage();
+    }
 
     /**
-     * Registers a new user
-     * @param username
-     * @param masterPassword
-     * @return
+     * Registers a new user by saving their master login credentials
+     * @param username The username for the master account
+     * @param masterPassword The password for the master account
+     * @throws IllegalArgumentException if username or password is empty
      */
-    static void register(String username, String masterPassword) {
+    public void register(String username, String masterPassword) {
+        // Validate inputs
+        if (username == null || username.trim().isEmpty()) {
+            throw new IllegalArgumentException("Username cannot be empty");
+        }
+        if (masterPassword == null || masterPassword.trim().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be empty");
+        }
+
+        // Create a new Data object with the master credentials
+        // The platform is set to "master" to identify it as a master account
+        Data masterData = new Data("master", username, Encryption.HashingSalting(masterPassword));
         
+        // Save the master data
+        masterStorage.saveMasterData(masterData);
     }
 
     /**
