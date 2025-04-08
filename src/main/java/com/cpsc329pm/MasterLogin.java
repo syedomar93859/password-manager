@@ -1,6 +1,7 @@
 package com.cpsc329pm;
 
 import java.util.*;
+import java.util.regex.*;
 
 public class MasterLogin {
     private final MasterLoginStorage masterStorage;
@@ -12,6 +13,56 @@ public class MasterLogin {
 
     public MasterLogin() {
         this.masterStorage = new MasterLoginStorage();
+    }
+
+    /**
+     * Verifies that the username and its confirmation match
+     * @param username The original username
+     * @param confirmUsername The confirmation username
+     * @return true if usernames match, false otherwise
+     */
+    public boolean verifyUsernameMatch(String username, String confirmUsername) {
+        if (username == null || confirmUsername == null) {
+            return false;
+        }
+        return username.equals(confirmUsername);
+    }
+
+    /**
+     * Verifies that the password and its confirmation match
+     * @param password The original password
+     * @param confirmPassword The confirmation password
+     * @return true if passwords match, false otherwise
+     */
+    public boolean verifyPasswordMatch(String password, String confirmPassword) {
+        if (password == null || confirmPassword == null) {
+            return false;
+        }
+        return password.equals(confirmPassword);
+    }
+
+    /**
+     * Registers a new user with confirmation checks
+     * @param username The username for the master account
+     * @param confirmUsername The confirmation username
+     * @param password The password for the master account
+     * @param confirmPassword The confirmation password
+     * @throws IllegalArgumentException if inputs are empty, don't match, or password doesn't meet requirements
+     */
+    public void registerWithConfirmation(String username, String confirmUsername, 
+                                       String password, String confirmPassword) {
+        // Check if usernames match
+        if (!verifyUsernameMatch(username, confirmUsername)) {
+            throw new IllegalArgumentException("Usernames do not match");
+        }
+
+        // Check if passwords match
+        if (!verifyPasswordMatch(password, confirmPassword)) {
+            throw new IllegalArgumentException("Passwords do not match");
+        }
+
+        // Proceed with regular registration
+        register(username, password);
     }
 
     /**
