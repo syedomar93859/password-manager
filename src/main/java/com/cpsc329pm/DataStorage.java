@@ -9,7 +9,9 @@ public class DataStorage {
 
     private List<Data> data; // List to store login information
     private String filename; // File to store/retrieve data
-    private ObjectMapper mapper; // Jackson ObjectMapper for JSON processing
+    private static ObjectMapper mapper; // Jackson ObjectMapper for JSON processing
+
+    private static String masterLogin = "master_login.json";
 
     /**
      * Constructor initializes the storage system with a specified filename.
@@ -33,6 +35,14 @@ public class DataStorage {
             mapper.writeValue(new File(filename), data);
         } catch (IOException e) {
             System.out.println("Error while saving data: " + e.getMessage());
+        }
+    }
+
+    public void saveToJSONMaster(Data master) {
+        try {
+            mapper.writeValue(new File(filename), master);
+        } catch (IOException e) {
+            System.out.println("Error while saving master login data: " + e.getMessage());
         }
     }
 

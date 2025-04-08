@@ -10,10 +10,10 @@ public class MasterLogin {
      * @param masterPassword
      * @return
      */
-    boolean register(String username, String masterPassword) {
-
-
-        return false;
+    static void register(String username, String masterPassword) {
+        Data master = new Data("secure squirrels", username, masterPassword);
+        DataStorage masterStorage = new DataStorage("master_login.json");
+        masterStorage.saveToJSONMaster(master);
     }
 
     /**
