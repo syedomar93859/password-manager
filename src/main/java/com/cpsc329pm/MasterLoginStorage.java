@@ -1,8 +1,7 @@
 package com.cpsc329pm;
 
 import java.io.*;
-import java.util.logging.Logger;
-
+import java.util.logging.*;
 import com.fasterxml.jackson.databind.*;
 
 public class MasterLoginStorage {

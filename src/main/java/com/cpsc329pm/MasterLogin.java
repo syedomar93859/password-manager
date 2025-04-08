@@ -2,6 +2,7 @@ package com.cpsc329pm;
 
 import java.util.*;
 import java.util.regex.*;
+import java.util.List;
 
 public class MasterLogin {
     private final MasterLoginStorage masterStorage;
