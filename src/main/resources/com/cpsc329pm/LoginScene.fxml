@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" styleClass="backgroundColor" stylesheets="@LoginScene-AnchorPane.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.BackendStuff.Login">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" styleClass="backgroundColor" stylesheets="@LoginScene-AnchorPane.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.MainPageController">
     <children>
         <Pane layoutX="-10.0" layoutY="-5.0" prefHeight="617.0" prefWidth="532.0" styleClass="backgroundColor">
             <children>
