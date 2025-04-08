@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.MainPage">
+   <children>
+      <AnchorPane prefHeight="140.0" prefWidth="600.0" styleClass="backgroundColor" stylesheets="@EditInfo.css">
+         <children>
+            <Label layoutX="167.0" layoutY="44.0" prefHeight="46.0" prefWidth="306.0" text="𝗦𝗘𝗖𝗨𝗥𝗘 𝗦𝗤𝗨𝗜𝗥𝗥𝗘𝗟𝗦">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <ImageView fitHeight="37.0" fitWidth="28.0" layoutX="283.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@LogoSquirrel.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="235.0" layoutY="90.0" prefHeight="37.0" prefWidth="131.0" text="EDIT INFORMATION">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <Label layoutX="94.0" layoutY="188.0" text="Service Name for Credential Changes" />
+      <TextField layoutX="60.0" layoutY="210.0" prefHeight="26.0" prefWidth="472.0" promptText="Service Name for Credential Changes" />
+      <Label layoutX="86.0" layoutY="399.0" prefHeight="17.0" prefWidth="179.0" text="Edit Password" />
+      <Label layoutX="90.0" layoutY="292.0" prefHeight="17.0" prefWidth="147.0" text="Edit Username" />
+      <TextField layoutX="61.0" layoutY="313.0" prefHeight="26.0" prefWidth="468.0" promptText="Edit Username" />
+      <ImageView fitHeight="25.0" fitWidth="17.0" layoutX="64.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Lock.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="58.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@MiniProfile.png" />
+         </image>
+      </ImageView>
+      <PasswordField layoutX="58.0" layoutY="424.0" prefHeight="26.0" prefWidth="471.0" promptText="Edit Password" />
+      <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="58.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Gearss.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="93.0" layoutY="538.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="146.0" styleClass="backgroundColor" stylesheets="@EditInfo.css" text="EDIT">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.09247075766324997" green="0.38991838693618774" blue="0.8684210777282715" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button layoutX="358.0" layoutY="542.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="146.0" styleClass="backgroundColor" stylesheets="@EditInfo.css" text="BACK">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.17653508484363556" green="0.28623902797698975" blue="0.9078947305679321" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+   </children>
+</AnchorPane>
