@@ -157,31 +157,52 @@ public class MasterLogin {
     }
 
     /**
-     * Authenticates login information
+     * Authenticates the username
      * @param username The username to authenticate
-     * @param masterPassword The password to verify
-     * @return true if authentication is successful, false otherwise
-     * @throws IllegalArgumentException if username or password is empty
+     * @return true if username is valid and matches stored username, false otherwise
+     * @throws IllegalArgumentException if username is empty
      */
-    public boolean authenticate(String username, String masterPassword) {
-        // Validate inputs
+    public boolean authenticateUsername(String username) {
+        // Validate input
         if (username == null || username.trim().isEmpty()) {
             throw new IllegalArgumentException("Username cannot be empty");
-        }
-        if (masterPassword == null || masterPassword.trim().isEmpty()) {
-            throw new IllegalArgumentException("Password cannot be empty");
         }
 
         // Get the stored master data
         Data storedData = masterStorage.getMasterData();
         
         // Check if master data exists and username matches
-        if (storedData == null || !storedData.getUsername().equals(username)) {
-            return false;
+        return storedData != null && storedData.getUsername().equals(username);
+    }
+
+    /**
+     * Authenticates the password
+     * @param password The password to verify
+     * @return true if password matches stored password, false otherwise
+     * @throws IllegalArgumentException if password is empty
+     */
+    public boolean authenticatePassword(String password) {
+        // Validate input
+        if (password == null || password.trim().isEmpty()) {
+            throw new IllegalArgumentException("Password cannot be empty");
         }
 
-        // Verify the password
-        return Encryption.VerifyPassword(masterPassword, storedData.getPassword());
+        // Get the stored master data
+        Data storedData = masterStorage.getMasterData();
+        
+        // Check if master data exists and verify password
+        return storedData != null && Encryption.VerifyPassword(password, storedData.getPassword());
+    }
+
+    /**
+     * Authenticates both username and password
+     * @param username The username to authenticate
+     * @param masterPassword The password to verify
+     * @return true if both username and password are valid, false otherwise
+     * @throws IllegalArgumentException if username or password is empty
+     */
+    public boolean authenticate(String username, String masterPassword) {
+        return authenticateUsername(username) && authenticatePassword(masterPassword);
     }
 
     /**
