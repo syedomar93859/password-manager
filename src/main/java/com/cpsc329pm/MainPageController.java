@@ -86,7 +86,7 @@ public class MainPageController {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             // Load DeleteServiceScene.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewServicesScene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("StoredServices.fxml"));
             Parent root = loader.load();
 
             // Create a new stage
