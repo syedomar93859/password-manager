@@ -60,6 +60,19 @@ public class AddServiceSceneController {
         if (password.equals(confirmUser)) {
             try {
                 DataStorage ds = new DataStorage("master_login.json");
+
+                // Check if the service already exists
+                if (ds.getData(platform, username) != null) {
+                    // If service exists, show error message
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Add Service");
+                    alert.setHeaderText("Error");
+                    alert.setContentText("Service already exists for this platform and username.");
+                    alert.showAndWait();
+                    return; // Exit method early if service already exists
+                }
+
+                // Add new service if it doesn't exist
                 ds.addData(platform, username, password);
                 ds.saveToJSON();
 
@@ -69,6 +82,7 @@ public class AddServiceSceneController {
                 alert.setContentText("Service added successfully.");
                 alert.showAndWait();
 
+                // Load MainPage.fxml after success
                 Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
@@ -77,6 +91,7 @@ public class AddServiceSceneController {
                 e.printStackTrace();
             }
         } else {
+            // Show error if passwords don't match
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Add Service");
             alert.setHeaderText("Error");
@@ -84,5 +99,6 @@ public class AddServiceSceneController {
             alert.showAndWait();
         }
     }
+
 
 }
