@@ -2,9 +2,6 @@ package com.cpsc329pm;
 
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.logging.*;
-
 
 import com.fasterxml.jackson.databind.*;
 
@@ -41,7 +38,8 @@ public class DataStorage {
         if (!file.exists()) return;
 
         try {
-            Data[] loadedData = mapper.readValue(file, Data[].class);
+            List<Data> loadedData = mapper.readValue(file, 
+                mapper.getTypeFactory().constructCollectionType(List.class, Data.class));
             dataMap.clear();
             for (Data data : loadedData) {
                 dataMap.put(generateKey(data.getPlatform(), data.getUsername()), data);
