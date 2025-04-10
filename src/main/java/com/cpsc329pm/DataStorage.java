@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
-
 import com.fasterxml.jackson.databind.*;
 
 public class DataStorage {
@@ -23,25 +22,26 @@ public class DataStorage {
     }
 
     public void saveToJSON() {
-        if (!isDirty) return;
-        
         try {
-            List<Data> dataList = new ArrayList<>(dataMap.values());
-            mapper.writeValue(new File(filename), dataList);
-            isDirty = false;
+            List<Data> dataList = new ArrayList<>(dataMap.values()); // Convert Map to List
+            mapper.writeValue(new File(filename), dataList); // Write as JSON array
         } catch (IOException e) {
-            logger.severe("Error while saving data: " + e.getMessage());
+            logger.severe("Error saving data to file: " + filename);
             throw new StorageException("Failed to save data", e);
         }
     }
 
+
     public void loadFromJSON() {
         File file = new File(filename);
-        if (!file.exists()) return;
+        if (!file.exists()) return; // If the file doesn't exist, nothing to load
 
         try {
-            List<Data> loadedData = mapper.readValue(file, 
-                mapper.getTypeFactory().constructCollectionType(List.class, Data.class));
+            // Read the JSON file as an array
+            List<Data> loadedData = mapper.readValue(file,
+                    mapper.getTypeFactory().constructCollectionType(List.class, Data.class));
+
+            // Clear and update the data map
             dataMap.clear();
             for (Data data : loadedData) {
                 dataMap.put(generateKey(data.getPlatform(), data.getUsername()), data);
@@ -52,12 +52,13 @@ public class DataStorage {
         }
     }
 
+
     public void addData(String platform, String username, String password) {
         String key = generateKey(platform, username);
         if (dataMap.containsKey(key)) {
             throw new DuplicateEntryException("Entry already exists for platform: " + platform + ", username: " + username);
         }
-        
+
         dataMap.put(key, new Data(platform, username, Encryption.HashingSalting(password)));
         isDirty = true;
     }
@@ -71,7 +72,7 @@ public class DataStorage {
         if (!dataMap.containsKey(key)) {
             throw new EntryNotFoundException("No entry found for platform: " + platform + ", username: " + username);
         }
-        
+
         dataMap.put(key, new Data(platform, username, Encryption.HashingSalting(newPassword)));
         isDirty = true;
     }

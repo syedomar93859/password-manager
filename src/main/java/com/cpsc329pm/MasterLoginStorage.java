@@ -1,6 +1,7 @@
 package com.cpsc329pm;
 
 import java.io.*;
+import java.util.List;
 import java.util.logging.*;
 import com.fasterxml.jackson.databind.*;
 
@@ -30,7 +31,12 @@ public class MasterLoginStorage {
         if (!file.exists()) return;
 
         try {
-            this.masterData = mapper.readValue(file, Data.class);
+            // Deserialize JSON into a list of Data objects
+            List<Data> masterDataList = mapper.readValue(file,
+                    mapper.getTypeFactory().constructCollectionType(List.class, Data.class));
+
+            // Pick the first entry if available
+            this.masterData = masterDataList.isEmpty() ? null : masterDataList.get(0);
         } catch (IOException e) {
             logger.severe("Error loading master login data: " + e.getMessage());
             throw new StorageException("Failed to load master login data", e);

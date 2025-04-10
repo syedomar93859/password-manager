@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class RegisterLoginSceneController {
@@ -27,22 +26,14 @@ public class RegisterLoginSceneController {
     @FXML
     private void handleBack(ActionEvent event) {
         try {
-            // Get current stage (Add New Service)
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            // Load MainPage.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScene.fxml"));
             Parent root = loader.load();
-
-            // Create a new stage
             Stage stage = new Stage();
             stage.setTitle("Main Page");
             stage.setScene(new Scene(root));
             stage.show();
-
-            // Close the current Add Service window
             currentStage.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,17 +42,23 @@ public class RegisterLoginSceneController {
     @FXML
     private void newAccount(ActionEvent event) {
         String username = newUsernameField.getText();
-        System.out.println(username);
         String againUsername = confirmUsernameField.getText();
-        System.out.println(againUsername);
-
         String password = newPasswordField.getText();
-        System.out.println(password);
         String againPassword = confirmPasswordField.getText();
-        System.out.println(againPassword);
 
-        if ((username.equals(againUsername)) &&(password.equals(againPassword))){
+        if (username.equals(againUsername) && password.equals(againPassword)) {
             try {
+                DataStorage masterStorage = new DataStorage("master_login.json");
+
+                // Ensure no duplicates before adding
+                if (masterStorage.getData("master", username) != null) {
+                    System.out.println("Username already exists!");
+                    return;  // Prevent overwriting existing user
+                }
+
+                masterStorage.addData("master", username, password);
+                masterStorage.saveToJSON();
+
                 Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
@@ -71,7 +68,6 @@ public class RegisterLoginSceneController {
             }
         } else {
             System.out.println("Invalid credentials.");
-            // Optional: display error in UI
         }
     }
 
@@ -80,23 +76,20 @@ public class RegisterLoginSceneController {
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Help");
         alert.setHeaderText("What Usernames and Passwords are Valid?");
-
         alert.setContentText(
                 "Password must:\n" +
                         "- Be at least 8 characters long\n" +
                         "- Contain at least one uppercase letter\n" +
                         "- Contain at least one lowercase letter\n" +
                         "- Contain at least one number\n" +
-                        "- Contain at least one special character(!@#$%^&*(),.?\":{}|<>)\n" +
-                        "- Cant contain spaces\n" +
-                        "- Cant contain common words or patterns");
+                        "- Contain at least one special character (!@#$%^&*(),.?\":{}|<>)\n" +
+                        "- Cannot contain spaces\n" +
+                        "- Cannot contain common words or patterns"
+        );
 
         alert.getButtonTypes().add(ButtonType.OK);
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(getClass().getResource("color.css").toExternalForm());
-
         alert.showAndWait();
     }
 }
-
-
