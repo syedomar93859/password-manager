@@ -14,7 +14,7 @@
          <children>
             <Region prefHeight="36.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="506.0" text="Stored Services" HBox.hgrow="ALWAYS" />
-            <Button fx:id="loadServices" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadDataIntoTable" prefHeight="37.0" prefWidth="59.0" style="-fx-background-radius: 0; -fx-border-radius: 0;" text="Load" HBox.hgrow="ALWAYS" />
+            <Button fx:id="backButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleBack" prefHeight="37.0" prefWidth="59.0" style="-fx-background-radius: 0; -fx-border-radius: 0;" text="Back" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </top>
