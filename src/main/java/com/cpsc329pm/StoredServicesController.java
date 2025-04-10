@@ -18,7 +18,7 @@ public class StoredServicesController {
     @FXML private TableColumn<Data, String> colUsername;
     @FXML private TableColumn<Data, String> colPassword;
 
-    private final DataStorage dataStorage = new DataStorage(); // Assuming you have this class
+    private final DataStorage dataStorage = new DataStorage("master_login.json"); // Assuming you have this class
 
     @FXML
     public void initialize() {
@@ -29,11 +29,19 @@ public class StoredServicesController {
         loadDataIntoTable();
     }
 
+
     private void loadDataIntoTable() {
-        dataStorage.loadFromJSON(); // Load data from file
-        List<Data> dataList = dataStorage.getAllData(); // Get list of data
+        List<Data> dataList = dataStorage.getAllData();
+
+        // DEBUG: Check if data is retrieved
+        System.out.println("Retrieved Data: " + dataList);
 
         ObservableList<Data> observableList = FXCollections.observableArrayList(dataList);
+
+        // DEBUG: Check if ObservableList is not empty
+        System.out.println("ObservableList Size: " + observableList.size());
+
         tableView.setItems(observableList);
     }
+
 }
