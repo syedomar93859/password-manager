@@ -6,10 +6,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 
 public class AddServiceSceneController {
+
+    @FXML
+    private TextField serviceField;
+
+    @FXML
+    private TextField usernameField;
+
+    @FXML
+    private TextField passwordField;
+
+    @FXML
+    private TextField confirmPasswordField;
+
 
     @FXML
     private void handleBack(ActionEvent event) {
@@ -34,4 +49,40 @@ public class AddServiceSceneController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleAdd(ActionEvent event) {
+        String platform = serviceField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        String confirmUser = confirmPasswordField.getText();
+
+        if (password.equals(confirmUser)) {
+            try {
+                DataStorage ds = new DataStorage("master_login.json");
+                ds.addData(platform, username, password);
+                ds.saveToJSON();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Add Service");
+                alert.setHeaderText("Success");
+                alert.setContentText("Service added successfully.");
+                alert.showAndWait();
+
+                Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Add Service");
+            alert.setHeaderText("Error");
+            alert.setContentText("Password does not match Confirm Password.");
+            alert.showAndWait();
+        }
+    }
+
 }
