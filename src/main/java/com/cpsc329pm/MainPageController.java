@@ -56,4 +56,50 @@ public class MainPageController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleEditService(ActionEvent event) {
+        try {
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Load DeleteServiceScene.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("EditInfoScene.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setTitle("Edit Your Services");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Close the Main Page
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void viewAllServices(ActionEvent event) {
+        try {
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Load DeleteServiceScene.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewServicesScene.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setTitle("View All Your Services");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Close the Main Page
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
