@@ -35,19 +35,38 @@ public class EditInfoSceneController {
         String platform = serviceNameField.getText();
         String username = editUsernameField.getText();
         String newPassword = editPasswordField.getText();
+
         try {
             DataStorage ds = new DataStorage("master_login.json");
+
+            // Check if the service exists in the JSON file
+            Data existingData = ds.getData(platform, username);
+            if (existingData == null) {
+                // If the service doesn't exist, show error alert
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Edit Info");
+                alert.setHeaderText("Error");
+                alert.setContentText("No service found with the provided platform and username.");
+                alert.showAndWait();
+                return; // Exit the method early if the service doesn't exist
+            }
+
+            // If the service exists, proceed with updating the data
             ds.updateData(platform, username, newPassword);
             ds.saveToJSON();
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Edit Info");
             alert.setHeaderText("Success");
             alert.setContentText("Data updated successfully.");
             alert.showAndWait();
+
+            // Reload the main page
             Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -57,6 +76,7 @@ public class EditInfoSceneController {
             alert.showAndWait();
         }
     }
+
 
     @FXML
     private void handleDelete(ActionEvent event) {
