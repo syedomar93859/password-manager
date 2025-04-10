@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.StoredServicesController">
    <top>
-      <Label prefHeight="36.0" prefWidth="86.0" text="Stored Services" BorderPane.alignment="CENTER" />
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Region prefHeight="36.0" prefWidth="0.0" HBox.hgrow="ALWAYS" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="506.0" text="Stored Services" HBox.hgrow="ALWAYS" />
+            <Button fx:id="loadServices" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadDataIntoTable" prefHeight="37.0" prefWidth="59.0" style="-fx-background-radius: 0; -fx-border-radius: 0;" text="Load" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
    </top>
    <center>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
