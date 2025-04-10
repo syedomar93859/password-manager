@@ -49,10 +49,10 @@
             </Label>
          </children></AnchorPane>
       <Label layoutX="88.0" layoutY="187.0" text="Username" />
-      <TextField fx:id="newUsernameField" layoutX="60.0" layoutY="210.0" prefHeight="26.0" prefWidth="472.0" promptText="Username" />
+      <TextField fx:id="newUsernameField" layoutX="60.0" layoutY="210.0" onAction="#newAccount" prefHeight="26.0" prefWidth="472.0" promptText="Username" />
       <Label layoutX="82.0" layoutY="350.0" prefHeight="17.0" prefWidth="179.0" text="Password" />
       <Label layoutX="86.0" layoutY="267.0" prefHeight="17.0" prefWidth="147.0" text="Confirm Username" />
-      <TextField fx:id="confirmUsernameField" layoutX="60.0" layoutY="287.0" prefHeight="26.0" prefWidth="472.0" promptText="Confirm Username" />
+      <TextField fx:id="confirmUsernameField" layoutX="60.0" layoutY="287.0" onAction="#newAccount" prefHeight="26.0" prefWidth="472.0" promptText="Confirm Username" />
       <Label layoutX="84.0" layoutY="431.0" prefHeight="17.0" prefWidth="179.0" text="Confirm Password" />
       <ImageView fitHeight="25.0" fitWidth="17.0" layoutX="65.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -69,8 +69,8 @@
             <Image url="@MiniProfile.png" />
          </image>
       </ImageView>
-      <PasswordField fx:id="newPasswordField" layoutX="60.0" layoutY="369.0" prefHeight="26.0" prefWidth="471.0" promptText="Password" />
-      <PasswordField fx:id="confirmPasswordField" layoutX="58.0" layoutY="451.0" prefHeight="26.0" prefWidth="471.0" promptText="Confirm Password" />
+      <PasswordField fx:id="newPasswordField" layoutX="60.0" layoutY="369.0" onAction="#newAccount" prefHeight="26.0" prefWidth="471.0" promptText="Password" />
+      <PasswordField fx:id="confirmPasswordField" layoutX="58.0" layoutY="451.0" onAction="#newAccount" prefHeight="26.0" prefWidth="471.0" promptText="Confirm Password" />
       <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="58.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@MiniProfile.png" />

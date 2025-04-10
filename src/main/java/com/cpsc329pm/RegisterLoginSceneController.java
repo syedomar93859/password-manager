@@ -52,14 +52,18 @@ public class RegisterLoginSceneController {
     @FXML
     private void newAccount(ActionEvent event) {
         String username = newUsernameField.getText();
+        System.out.println(username);
         String againUsername = confirmUsernameField.getText();
+        System.out.println(againUsername);
 
         String password = newPasswordField.getText();
+        System.out.println(password);
         String againPassword = confirmPasswordField.getText();
+        System.out.println(againPassword);
 
-        if ((username == againUsername) &&(password == againPassword)){
+        if ((username.equals(againUsername)) &&(password.equals(againPassword))){
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/com/cpsc329pm/MainPage.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
