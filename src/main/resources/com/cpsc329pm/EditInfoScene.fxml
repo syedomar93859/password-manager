@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.MainPage">
+<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.EditInfoSceneController">
    <children>
       <AnchorPane prefHeight="140.0" prefWidth="600.0" styleClass="backgroundColor" stylesheets="@EditInfo.css">
          <children>
@@ -49,10 +43,10 @@
             </Label>
          </children></AnchorPane>
       <Label layoutX="94.0" layoutY="188.0" text="Service Name for Credential Changes" />
-      <TextField layoutX="60.0" layoutY="210.0" prefHeight="26.0" prefWidth="472.0" promptText="Service Name for Credential Changes" />
+      <TextField fx:id="serviceNameField" layoutX="60.0" layoutY="210.0" prefHeight="26.0" prefWidth="472.0" promptText="Service Name for Credential Changes" />
       <Label layoutX="86.0" layoutY="399.0" prefHeight="17.0" prefWidth="179.0" text="Edit Password" />
       <Label layoutX="90.0" layoutY="292.0" prefHeight="17.0" prefWidth="147.0" text="Edit Username" />
-      <TextField layoutX="61.0" layoutY="313.0" prefHeight="26.0" prefWidth="468.0" promptText="Edit Username" />
+      <TextField fx:id="editUsernameField" layoutX="61.0" layoutY="313.0" prefHeight="26.0" prefWidth="468.0" promptText="Edit Username" />
       <ImageView fitHeight="25.0" fitWidth="17.0" layoutX="64.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Lock.png" />
@@ -63,13 +57,13 @@
             <Image url="@MiniProfile.png" />
          </image>
       </ImageView>
-      <PasswordField layoutX="58.0" layoutY="424.0" prefHeight="26.0" prefWidth="471.0" promptText="Edit Password" />
+      <PasswordField fx:id="editPasswordField" layoutX="58.0" layoutY="424.0" prefHeight="26.0" prefWidth="471.0" promptText="Edit Password" />
       <ImageView fitHeight="28.0" fitWidth="31.0" layoutX="58.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Gearss.png" />
          </image>
       </ImageView>
-      <Button layoutX="93.0" layoutY="538.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="146.0" styleClass="backgroundColor" stylesheets="@EditInfo.css" text="EDIT">
+      <Button fx:id="editButton" layoutX="93.0" layoutY="538.0" mnemonicParsing="false" onAction="#handleEdit" prefHeight="33.0" prefWidth="146.0" styleClass="backgroundColor" stylesheets="@EditInfo.css" text="EDIT">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -87,7 +81,7 @@
             </LinearGradient>
          </textFill>
       </Button>
-      <Button layoutX="358.0" layoutY="542.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="146.0" styleClass="backgroundColor" stylesheets="@EditInfo.css" text="BACK">
+      <Button fx:id="backButton" layoutX="358.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="33.0" prefWidth="146.0" styleClass="backgroundColor" stylesheets="@EditInfo.css" text="BACK">
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
