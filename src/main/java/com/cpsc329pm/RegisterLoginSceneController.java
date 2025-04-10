@@ -52,7 +52,12 @@ public class RegisterLoginSceneController {
 
                 // Ensure no duplicates before adding
                 if (masterStorage.getData("master", username) != null) {
-                    System.out.println("Username already exists!");
+                    // Create an alert for existing username
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Account Creation Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Username already exists!");
+                    alert.showAndWait();
                     return;  // Prevent overwriting existing user
                 }
 
@@ -67,9 +72,16 @@ public class RegisterLoginSceneController {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Invalid credentials.");
+            // Create an alert for invalid credentials
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Credentials");
+            alert.setHeaderText(null);
+            alert.setContentText("Invalid credentials. Please fill out all the boxes and make sure both username and password match.");
+            alert.showAndWait();
         }
     }
+
+
 
     @FXML
     private void reqRegister(ActionEvent event) {
