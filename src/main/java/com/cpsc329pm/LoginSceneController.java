@@ -1,6 +1,7 @@
 package com.cpsc329pm;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
@@ -45,8 +46,14 @@ public class LoginSceneController {
                 e.printStackTrace();
             }
         } else {
-            System.out.println("Invalid credentials.");
-            // Optional: display error in UI
+            // Create and show an alert when the login fails
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Error");
+            alert.setHeaderText("Invalid Credentials");
+            alert.setContentText("You have either not entered your username and password or the username or password you entered is incorrect. Please try again.");
+
+            // Show the alert
+            alert.showAndWait();
         }
     }
 

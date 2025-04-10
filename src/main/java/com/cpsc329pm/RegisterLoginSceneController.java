@@ -6,8 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -74,5 +73,28 @@ public class RegisterLoginSceneController {
             System.out.println("Invalid credentials.");
             // Optional: display error in UI
         }
+    }
+
+    @FXML
+    private void reqRegister(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Help");
+        alert.setHeaderText("What Usernames and Passwords are Valid?");
+
+        alert.setContentText(
+                "Password must:\n" +
+                        "- Be at least 8 characters long\n" +
+                        "- Contain at least one uppercase letter\n" +
+                        "- Contain at least one lowercase letter\n" +
+                        "- Contain at least one number\n" +
+                        "- Contain at least one special character(!@#$%^&*(),.?\":{}|<>)\n" +
+                        "- Cant contain spaces\n" +
+                        "- Cant contain common words or patterns");
+
+        alert.getButtonTypes().add(ButtonType.OK);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("color.css").toExternalForm());
+
+        alert.showAndWait();
     }
 }

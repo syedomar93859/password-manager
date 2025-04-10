@@ -165,7 +165,8 @@ public class MasterLogin {
     public boolean authenticateUsername(String username) {
         // Validate input
         if (username == null || username.trim().isEmpty()) {
-            throw new IllegalArgumentException("Username cannot be empty");
+            return false;
+//            throw new IllegalArgumentException("Username cannot be empty");
         }
 
         // Get the stored master data
@@ -184,7 +185,8 @@ public class MasterLogin {
     public boolean authenticatePassword(String password) {
         // Validate input
         if (password == null || password.trim().isEmpty()) {
-            throw new IllegalArgumentException("Password cannot be empty");
+//            throw new IllegalArgumentException("Password cannot be empty");
+            return false;
         }
 
         // Get the stored master data
