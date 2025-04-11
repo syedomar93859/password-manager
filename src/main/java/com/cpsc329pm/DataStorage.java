@@ -85,6 +85,11 @@ public class DataStorage {
         }
     }
 
+    public void clearData() {
+        dataMap.clear();
+        saveToJSON(); // will now save an empty list to the file
+    }
+
     public List<Data> getAllData() {
         return new ArrayList<>(dataMap.values());
     }
