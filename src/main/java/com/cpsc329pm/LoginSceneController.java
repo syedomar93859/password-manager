@@ -38,7 +38,7 @@ public class LoginSceneController {
 
         if (success) {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/com/cpsc329pm/MainPage.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/com/cpsc329pm/ReformattedMainPage.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();

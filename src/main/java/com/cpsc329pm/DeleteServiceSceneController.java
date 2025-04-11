@@ -33,7 +33,7 @@ public class DeleteServiceSceneController {
     private void handleBack(ActionEvent event) {
         try {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReformattedMainPage.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Main Page");
@@ -78,7 +78,7 @@ public class DeleteServiceSceneController {
                 alert.showAndWait();
 
                 // Reload the main page
-                Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("ReformattedMainPage.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();

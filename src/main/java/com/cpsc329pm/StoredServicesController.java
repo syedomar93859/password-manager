@@ -71,7 +71,7 @@ public class StoredServicesController {
     private void handleBack(ActionEvent event) {
         try {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReformattedMainPage.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Main Page");

@@ -33,7 +33,7 @@ public class AddServiceSceneController {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
             // Load MainPage.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MainPage.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReformattedMainPage.fxml"));
             Parent root = loader.load();
 
             // Create a new stage
@@ -83,7 +83,7 @@ public class AddServiceSceneController {
                 alert.showAndWait();
 
                 // Load MainPage.fxml after success
-                Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("ReformattedMainPage.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();

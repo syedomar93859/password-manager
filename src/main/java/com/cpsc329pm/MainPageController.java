@@ -6,9 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Optional;
 
 public class MainPageController {
 
@@ -103,6 +107,35 @@ public class MainPageController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+    @FXML
+    private void handleBack(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Delete Everything");
+        alert.setHeaderText("Warning");
+        alert.setContentText("Are you sure you want to logout? You will go to the login page.");
+
+        ButtonType yesButton = new ButtonType("Yes");
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(yesButton, cancelButton);
+
+        // Show the alert and wait for user input
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == yesButton) {
+            try {
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScene.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Main Page");
+                stage.setScene(new Scene(root));
+                stage.show();
+                currentStage.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

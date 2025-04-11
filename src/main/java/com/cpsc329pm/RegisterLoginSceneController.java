@@ -64,7 +64,7 @@ public class RegisterLoginSceneController {
                 masterStorage.addData("master", username, password);
                 masterStorage.saveToJSON();
 
-                Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("ReformattedMainPage.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
