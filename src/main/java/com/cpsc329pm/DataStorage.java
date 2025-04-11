@@ -59,7 +59,7 @@ public class DataStorage {
             throw new DuplicateEntryException("Entry already exists for platform: " + platform + ", username: " + username);
         }
 
-        dataMap.put(key, new Data(platform, username, Encryption.HashingSalting(password)));
+        dataMap.put(key, new Data(platform, username, Encryption.encrypt(password)));
         isDirty = true;
     }
 
@@ -75,7 +75,7 @@ public class DataStorage {
 //        }
         deleteData(platform, username);
 
-        dataMap.put(key, new Data(platform, newUsername, Encryption.HashingSalting(newPassword)));
+        dataMap.put(key, new Data(platform, newUsername, Encryption.encrypt(newPassword)));
         isDirty = true;
     }
 
