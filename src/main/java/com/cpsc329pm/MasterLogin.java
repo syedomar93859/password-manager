@@ -150,7 +150,7 @@ public class MasterLogin {
         }
 
         // Create a new Data object with the master credentials
-        Data masterData = new Data("master", username, Encryption.HashingSalting(masterPassword));
+        Data masterData = new Data("master", username, Encryption.encrypt(masterPassword));
         
         // Save the master data
         masterStorage.saveMasterData(masterData);
@@ -215,7 +215,7 @@ public class MasterLogin {
         for (Data entry : masterEntries) {
             if (entry.getPlatform().equals("master") &&
                     entry.getUsername().equals(username) &&
-                    Encryption.VerifyPassword(masterPassword, entry.getPassword())) {
+                    Encryption.verifyPassword(masterPassword, entry.getPassword())) {
                 return true; // Found a matching username + password
             }
         }

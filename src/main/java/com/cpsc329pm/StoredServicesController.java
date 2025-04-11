@@ -11,13 +11,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class StoredServicesController {
 
@@ -36,7 +36,11 @@ public class StoredServicesController {
         // Set cell value factories for actual data columns
         colService.setCellValueFactory(new PropertyValueFactory<>("platform"));
         colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
-        colPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+        colPassword.setCellValueFactory(cellData -> {
+            String encrypted = cellData.getValue().getPassword();
+            String decrypted = Encryption.decrypt(encrypted); // Replace with your actual decrypt logic
+            return new javafx.beans.property.SimpleStringProperty(decrypted);
+        });
 
         // Set a custom cell value factory for row numbers
         colNumber.setCellValueFactory(cellData -> {
@@ -77,6 +81,32 @@ public class StoredServicesController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    private void deleteAllHandling(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Delete Everything");
+        alert.setHeaderText("Warning");
+        alert.setContentText("Are you sure you want to delete all the services, including any you are using to login to this password manager?");
+
+        ButtonType yesButton = new ButtonType("Yes");
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(yesButton, cancelButton);
+
+        // Show the alert and wait for user input
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == yesButton) {
+            DataStorage storage = new DataStorage("master_login.json");
+            storage.clearData();
+
+            Alert confirm = new Alert(Alert.AlertType.INFORMATION);
+            confirm.setTitle("Success");
+            confirm.setHeaderText(null);
+            confirm.setContentText("All data has been deleted. Go back to the main page and click View All Services to see that everything has been deleted.");
+            confirm.showAndWait();
+        }
+
     }
 
 }
