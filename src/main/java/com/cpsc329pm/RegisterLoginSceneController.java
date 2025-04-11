@@ -41,10 +41,10 @@ public class RegisterLoginSceneController {
 
     @FXML
     private void newAccount(ActionEvent event) {
-        String username = newUsernameField.getText();
-        String againUsername = confirmUsernameField.getText();
-        String password = newPasswordField.getText();
-        String againPassword = confirmPasswordField.getText();
+        String username = newUsernameField.getText().trim();
+        String againUsername = confirmUsernameField.getText().trim();
+        String password = newPasswordField.getText().trim();
+        String againPassword = confirmPasswordField.getText().trim();
 
         if (username.equals(againUsername) && password.equals(againPassword)) {
             try {

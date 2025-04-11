@@ -47,9 +47,9 @@ public class DeleteServiceSceneController {
 
     @FXML
     private void handleDelete(ActionEvent event) {
-        String platform = serviceField.getText();
-        String username = usernameField.getText();
-        String confirmUser = confirmUsernameField.getText();
+        String platform = serviceField.getText().trim();
+        String username = usernameField.getText().trim();
+        String confirmUser = confirmUsernameField.getText().trim();
 
         if (username.equals(confirmUser)) {
             try {

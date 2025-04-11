@@ -52,10 +52,10 @@ public class AddServiceSceneController {
 
     @FXML
     private void handleAdd(ActionEvent event) {
-        String platform = serviceField.getText();
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        String confirmUser = confirmPasswordField.getText();
+        String platform = serviceField.getText().trim();
+        String username = usernameField.getText().trim();
+        String password = passwordField.getText().trim();
+        String confirmUser = confirmPasswordField.getText().trim();
 
         if (password.equals(confirmUser)) {
             try {

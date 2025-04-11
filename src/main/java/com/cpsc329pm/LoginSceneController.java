@@ -31,8 +31,8 @@ public class LoginSceneController {
 
     @FXML
     private void handleLogin(ActionEvent event) {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+        String username = usernameField.getText().trim();
+        String password = passwordField.getText().trim();
 
         boolean success = loginService.authenticate(username, password);
 

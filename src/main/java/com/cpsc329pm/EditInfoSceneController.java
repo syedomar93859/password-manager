@@ -35,10 +35,10 @@ public class EditInfoSceneController {
 
     @FXML
     private void handleEdit(ActionEvent event) {
-        String platform = serviceNameField.getText();
-        String username = usernameField.getText();
-        String newUsername = editUsernameField.getText();
-        String newPassword = editPasswordField.getText();
+        String platform = serviceNameField.getText().trim();
+        String username = usernameField.getText().trim();
+        String newUsername = editUsernameField.getText().trim();
+        String newPassword = editPasswordField.getText().trim();
 
         try {
             DataStorage ds = new DataStorage("master_login.json");
