@@ -67,13 +67,15 @@ public class DataStorage {
         return dataMap.get(generateKey(platform, username));
     }
 
-    public void updateData(String platform, String username, String newPassword) {
-        String key = generateKey(platform, username);
-        if (!dataMap.containsKey(key)) {
-            throw new EntryNotFoundException("No entry found for platform: " + platform + ", username: " + username);
-        }
+    public void updateData(String platform, String username, String newUsername, String newPassword) {
+        String key = generateKey(platform, newUsername);
 
-        dataMap.put(key, new Data(platform, username, Encryption.HashingSalting(newPassword)));
+//        if (!dataMap.containsKey(key)) {
+//            throw new EntryNotFoundException("No entry found for platform: " + platform + ", username: " + newUsername);
+//        }
+        deleteData(platform, username);
+
+        dataMap.put(key, new Data(platform, newUsername, Encryption.HashingSalting(newPassword)));
         isDirty = true;
     }
 

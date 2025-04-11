@@ -44,7 +44,7 @@ public class EditInfoSceneController {
             DataStorage ds = new DataStorage("master_login.json");
 
             // Check if the service exists in the JSON file
-            Data existingData = ds.getData(platform, newUsername);
+            Data existingData = ds.getData(platform, username);
             if (existingData == null) {
                 // If the service doesn't exist, show error alert
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -56,7 +56,7 @@ public class EditInfoSceneController {
             }
 
             // If the service exists, proceed with updating the data
-            ds.updateData(platform, newUsername, newPassword);
+            ds.updateData(platform, username, newUsername, newPassword);
             ds.saveToJSON();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
