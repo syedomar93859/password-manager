@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
@@ -17,6 +14,18 @@ import java.util.Optional;
 public class MainPageController {
 
     @FXML private Button viewButton;
+
+    @FXML
+    private Label currUsername;
+
+    public void setCurrUsername(String username) {
+        if (currUsername != null) {
+            currUsername.setText(username);
+        } else {
+            System.err.println("currUsername TextField is null!");
+        }
+    }
+
 
     @FXML
     private void handleAddService(ActionEvent event) {
@@ -52,7 +61,7 @@ public class MainPageController {
 
             // Create a new stage
             Stage stage = new Stage();
-            stage.setTitle("Add New Service");
+            stage.setTitle("Delete A Service");
             stage.setScene(new Scene(root));
             stage.show();
 
@@ -112,7 +121,7 @@ public class MainPageController {
     @FXML
     private void handleBack(ActionEvent event){
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Delete Everything");
+        alert.setTitle("Logout Confirmation");
         alert.setHeaderText("Warning");
         alert.setContentText("Are you sure you want to logout? You will go to the login page.");
 
@@ -129,7 +138,7 @@ public class MainPageController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginScene.fxml"));
                 Parent root = loader.load();
                 Stage stage = new Stage();
-                stage.setTitle("Main Page");
+                stage.setTitle("Login Page");
                 stage.setScene(new Scene(root));
                 stage.show();
                 currentStage.close();

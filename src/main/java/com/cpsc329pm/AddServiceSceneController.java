@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+
 public class AddServiceSceneController {
 
     @FXML
@@ -36,9 +37,14 @@ public class AddServiceSceneController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ReformattedMainPage.fxml"));
             Parent root = loader.load();
 
+            //  Now get the controller from the loader
+            MainPageController controller = loader.getController();
+            String currentUser = UserSession.getUsername();
+            controller.setCurrUsername(currentUser);  // Pass username to controller
+
             // Create a new stage
             Stage stage = new Stage();
-            stage.setTitle("Add Services");
+            stage.setTitle("Main Page");
             stage.setScene(new Scene(root));
             stage.show();
 

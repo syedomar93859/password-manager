@@ -38,9 +38,18 @@ public class LoginSceneController {
 
         if (success) {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/com/cpsc329pm/ReformattedMainPage.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cpsc329pm/ReformattedMainPage.fxml"));
+                Parent root = loader.load(); // Load FXML and get root node
+
+                //  Now get the controller from the loader
+                MainPageController controller = loader.getController();
+                UserSession.setUsername(username);
+                String currentUser = UserSession.getUsername();
+                controller.setCurrUsername(currentUser);  // Pass username to controller
+
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
+                stage.setTitle("Main Page");
                 stage.show();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -69,7 +78,7 @@ public class LoginSceneController {
 
             // Create a new stage
             Stage stage = new Stage();
-            stage.setTitle("Register Page");
+            stage.setTitle("Main Page");
             stage.setScene(new Scene(root));
             stage.show();
 

@@ -114,7 +114,13 @@ public class EditInfoSceneController {
         try {
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ReformattedMainPage.fxml"));
+            //  Now get the controller from the loader
+
             Parent root = loader.load();
+
+            MainPageController controller = loader.getController();
+            String currentUser = UserSession.getUsername();
+            controller.setCurrUsername(currentUser);  // Pass username to controller
             Stage stage = new Stage();
             stage.setTitle("Main Page");
             stage.setScene(new Scene(root));
