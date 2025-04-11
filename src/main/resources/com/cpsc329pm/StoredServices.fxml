@@ -51,9 +51,9 @@
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="colNumber" prefWidth="60.0" text="Number" />
-          <TableColumn fx:id="colService" prefWidth="110.0" text="Service" />
-            <TableColumn fx:id="colUsername" prefWidth="101.0" text="Username" />
-            <TableColumn fx:id="colPassword" minWidth="0.0" prefWidth="327.0" text="Password" />
+          <TableColumn fx:id="colService" prefWidth="130.0" text="Service" />
+            <TableColumn fx:id="colUsername" prefWidth="152.0" text="Username" />
+            <TableColumn fx:id="colPassword" minWidth="0.0" prefWidth="256.0" text="Password" />
         </columns>
       </TableView>
    </center>

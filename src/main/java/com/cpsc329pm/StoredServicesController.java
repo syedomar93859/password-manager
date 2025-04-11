@@ -36,7 +36,11 @@ public class StoredServicesController {
         // Set cell value factories for actual data columns
         colService.setCellValueFactory(new PropertyValueFactory<>("platform"));
         colUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
-        colPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
+        colPassword.setCellValueFactory(cellData -> {
+            String encrypted = cellData.getValue().getPassword();
+            String decrypted = Encryption.decrypt(encrypted); // Replace with your actual decrypt logic
+            return new javafx.beans.property.SimpleStringProperty(decrypted);
+        });
 
         // Set a custom cell value factory for row numbers
         colNumber.setCellValueFactory(cellData -> {
