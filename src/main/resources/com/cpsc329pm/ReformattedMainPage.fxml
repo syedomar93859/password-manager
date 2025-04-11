@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.MainPageController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #3c8bff;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="189.0" layoutY="121.0" prefHeight="37.0" prefWidth="233.0" text="WELCOME TO THE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label layoutX="212.0" layoutY="164.0" prefHeight="46.0" prefWidth="165.0" text="MAIN PAGE">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="addServiceButton" layoutX="21.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleAddService" prefHeight="27.0" prefWidth="538.0" style="-fx-background-color: #304ffe;" text="ADD NEW SERVICE">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="deleteServiceButton" layoutX="20.0" layoutY="288.0" mnemonicParsing="false" onAction="#handleDeleteService" prefHeight="27.0" prefWidth="539.0" style="-fx-background-color: #304ffe;" text="DELETE SERVICE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="viewButton" layoutX="21.0" layoutY="337.0" mnemonicParsing="false" onAction="#viewAllServices" prefHeight="27.0" prefWidth="537.0" style="-fx-background-color: #304ffe;" text="VIEW ALL SERVICES">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="editServiceButton" layoutX="19.0" layoutY="386.0" mnemonicParsing="false" onAction="#handleEditService" prefHeight="27.0" prefWidth="540.0" style="-fx-background-color: #304ffe;" text="EDIT INFO">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="121.0" fitWidth="125.0" layoutX="234.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@MiniProfile.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="529.0" layoutY="10.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="61.0" style="-fx-background-color: #304ffe;" text="Back" />
+         </children></AnchorPane>
+   </center>
+   <top>
+      <Pane prefHeight="38.0" prefWidth="600.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="377.0" layoutY="13.0" text="USERNAME : ">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="464.0" layoutY="14.0" text="Put Username here">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="72.0" layoutY="-6.0" prefHeight="50.0" prefWidth="162.0" text="PASSWORD MANAGER">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <ImageView fitHeight="24.0" fitWidth="31.0" layoutX="34.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Lock.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </top>
+</BorderPane>
