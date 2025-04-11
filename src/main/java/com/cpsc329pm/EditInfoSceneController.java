@@ -25,6 +25,9 @@ public class EditInfoSceneController {
     private TextField serviceNameField;
 
     @FXML
+    private TextField usernameField;
+
+    @FXML
     private TextField editUsernameField;
 
     @FXML
@@ -33,14 +36,15 @@ public class EditInfoSceneController {
     @FXML
     private void handleEdit(ActionEvent event) {
         String platform = serviceNameField.getText();
-        String username = editUsernameField.getText();
+        String username = usernameField.getText();
+        String newUsername = editUsernameField.getText();
         String newPassword = editPasswordField.getText();
 
         try {
             DataStorage ds = new DataStorage("master_login.json");
 
             // Check if the service exists in the JSON file
-            Data existingData = ds.getData(platform, username);
+            Data existingData = ds.getData(platform, newUsername);
             if (existingData == null) {
                 // If the service doesn't exist, show error alert
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -52,7 +56,7 @@ public class EditInfoSceneController {
             }
 
             // If the service exists, proceed with updating the data
-            ds.updateData(platform, username, newPassword);
+            ds.updateData(platform, newUsername, newPassword);
             ds.saveToJSON();
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

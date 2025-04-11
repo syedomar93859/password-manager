@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.EditInfoSceneController">
+<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cpsc329pm.EditInfoSceneController">
    <children>
       <AnchorPane prefHeight="140.0" prefWidth="600.0" styleClass="backgroundColor" stylesheets="@EditInfo.css">
          <children>
@@ -100,7 +100,7 @@
             </LinearGradient>
          </textFill>
       </Button>
-      <TextField layoutX="55.0" layoutY="312.0" prefHeight="26.0" prefWidth="477.0" promptText="Username for Credential Changes" />
+      <TextField fx:id="usernameField" layoutX="55.0" layoutY="312.0" prefHeight="26.0" prefWidth="477.0" promptText="Username for Credential Changes" />
       <Label layoutX="81.0" layoutY="292.0" prefHeight="17.0" prefWidth="194.0" text="Username for Credential Changes" />
       <ImageView fitHeight="26.0" fitWidth="30.0" layoutX="59.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
          <image>
