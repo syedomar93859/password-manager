@@ -162,19 +162,24 @@ public class MasterLogin {
      * @return true if username is valid and matches stored username, false otherwise
      * @throws IllegalArgumentException if username is empty
      */
-    public boolean authenticateUsername(String username) {
-        // Validate input
-        if (username == null || username.trim().isEmpty()) {
-            return false;
-//            throw new IllegalArgumentException("Username cannot be empty");
-        }
-
-        // Get the stored master data
-        Data storedData = masterStorage.getMasterData();
-        
-        // Check if master data exists and username matches
-        return storedData != null && storedData.getUsername().equals(username);
-    }
+//    public boolean authenticateUsername(String username) {
+//        // Validate input
+//        if (username == null || username.trim().isEmpty()) {
+//            return false;
+////            throw new IllegalArgumentException("Username cannot be empty");
+//        }
+//
+//        System.out.println("We have also been here");
+//        // Get the stored master data
+//        Data storedData = masterStorage.getMasterData();
+//        System.out.println(storedData.getUsername() + "      " + storedData.getPassword() + "      " + storedData.getPlatform());
+//
+//        // Check if master data exists and username matches
+//        if (storedData == null){
+//            return false;
+//        }
+//        return storedData != null && storedData.getUsername().equals(username);
+//    }
 
     /**
      * Authenticates the password
@@ -182,19 +187,20 @@ public class MasterLogin {
      * @return true if password matches stored password, false otherwise
      * @throws IllegalArgumentException if password is empty
      */
-    public boolean authenticatePassword(String password) {
-        // Validate input
-        if (password == null || password.trim().isEmpty()) {
-//            throw new IllegalArgumentException("Password cannot be empty");
-            return false;
-        }
-
-        // Get the stored master data
-        Data storedData = masterStorage.getMasterData();
-        
-        // Check if master data exists and verify password
-        return storedData != null && Encryption.VerifyPassword(password, storedData.getPassword());
-    }
+//    public boolean authenticatePassword(String password) {
+//        // Validate input
+//        if (password == null || password.trim().isEmpty()) {
+////            throw new IllegalArgumentException("Password cannot be empty");
+//            return false;
+//        }
+//        System.out.println("We have been here");
+//        // Get the stored master data
+//        Data storedData = masterStorage.getMasterData();
+//        System.out.println(storedData.getUsername() + storedData.getPassword() + storedData.getPlatform());
+//
+//        // Check if master data exists and verify password
+//        return storedData != null && Encryption.VerifyPassword(password, storedData.getPassword());
+//    }
 
     /**
      * Authenticates both username and password
@@ -204,8 +210,18 @@ public class MasterLogin {
      * @throws IllegalArgumentException if username or password is empty
      */
     public boolean authenticate(String username, String masterPassword) {
-        return authenticateUsername(username) && authenticatePassword(masterPassword);
+        List<Data> masterEntries = masterStorage.getAllMasterData();
+
+        for (Data entry : masterEntries) {
+            if (entry.getPlatform().equals("master") &&
+                    entry.getUsername().equals(username) &&
+                    Encryption.VerifyPassword(masterPassword, entry.getPassword())) {
+                return true; // Found a matching username + password
+            }
+        }
+        return false; // No match found
     }
+
 
     /**
      * Change user's master password
