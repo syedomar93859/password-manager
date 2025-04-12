@@ -57,7 +57,28 @@ public class DeleteServiceSceneController {
         String username = usernameField.getText().trim();
         String confirmUser = confirmUsernameField.getText().trim();
 
-        if (username.equals(confirmUser)) {
+        StringBuilder checkString = new StringBuilder();
+
+// Username validation
+        if (platform.isEmpty()) {
+            checkString.append("Please fill out the Name of Service box.\n");
+        }
+        if (username.isEmpty()) {
+            checkString.append("Please fill out the Username box.\n");
+        }
+        if (confirmUser.isEmpty()) {
+            checkString.append("Please fill out the Confirm Username box.\n");
+        }
+        if (!username.equals(confirmUser)) {
+            checkString.append("Username and Confirm Username do not match.\n");
+        }
+        if (!checkString.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Deleting Service Failed");
+            alert.setHeaderText(null);
+            alert.setContentText(checkString.toString());
+            alert.showAndWait();
+        }else if (username.equals(confirmUser)) {
             try {
                 DataStorage ds = new DataStorage("master_login.json");
 
@@ -92,13 +113,14 @@ public class DeleteServiceSceneController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {
-            // If username does not match the confirm username field
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Delete Service");
-            alert.setHeaderText("Error");
-            alert.setContentText("Username does not match Confirm Username.");
-            alert.showAndWait();
         }
+//        } else {
+//            // If username does not match the confirm username field
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Delete Service");
+//            alert.setHeaderText("Error");
+//            alert.setContentText("Username does not match Confirm Username.");
+//            alert.showAndWait();
+//        }
     }
 }

@@ -40,7 +40,29 @@ public class EditInfoSceneController {
         String newUsername = editUsernameField.getText().trim();
         String newPassword = editPasswordField.getText().trim();
 
-        try {
+        StringBuilder checkString = new StringBuilder();
+
+        if (platform.isEmpty()) {
+            checkString.append("Please fill out the Name of Service Name for Credential Changes box.\n");
+        }
+        if (username.isEmpty()) {
+            checkString.append("Please fill out the Username for Credential Changes box.\n");
+        }
+        if (newUsername.isEmpty()) {
+            checkString.append("Please fill out the New Username box.\n");
+        }
+        if (newPassword.isEmpty()) {
+            checkString.append("Please fill out the New Password box.\n");
+        }
+
+        if (!checkString.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Deleting Service Failed");
+            alert.setHeaderText(null);
+            alert.setContentText(checkString.toString());
+            alert.showAndWait();
+        }else
+            try {
             DataStorage ds = new DataStorage("master_login.json");
 
             // Check if the service exists in the JSON file

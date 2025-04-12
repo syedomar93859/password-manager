@@ -63,7 +63,33 @@ public class AddServiceSceneController {
         String password = passwordField.getText().trim();
         String confirmUser = confirmPasswordField.getText().trim();
 
-        if (password.equals(confirmUser)) {
+        StringBuilder checkString = new StringBuilder();
+
+// Username validation
+        if (platform.isEmpty()) {
+            checkString.append("Please fill out the Name of Service box.\n");
+        }
+        if (username.isEmpty()) {
+            checkString.append("Please fill out the Username box.\n");
+        }
+        if (password.isEmpty()) {
+            checkString.append("Please fill out the Password box.\n");
+        }
+        if (confirmUser.isEmpty()) {
+            checkString.append("Please fill out the Confirm Password box.\n");
+        }
+        if (!password.equals(confirmUser)) {
+            checkString.append("Password and Confirm Password do not match.\n");
+        }
+
+// Show alert if any issues were found
+        if (!checkString.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Adding Service Failed");
+            alert.setHeaderText(null);
+            alert.setContentText(checkString.toString());
+            alert.showAndWait();
+        }else if (password.equals(confirmUser)) {
             try {
                 DataStorage ds = new DataStorage("master_login.json");
 
@@ -96,14 +122,15 @@ public class AddServiceSceneController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {
-            // Show error if passwords don't match
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Add Service");
-            alert.setHeaderText("Error");
-            alert.setContentText("Password does not match Confirm Password.");
-            alert.showAndWait();
         }
+//        } else {
+//            // Show error if passwords don't match
+//            Alert alert = new Alert(Alert.AlertType.ERROR);
+//            alert.setTitle("Add Service");
+//            alert.setHeaderText("Error");
+//            alert.setContentText("Password does not match Confirm Password.");
+//            alert.showAndWait();
+//        }
     }
 
 
