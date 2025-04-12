@@ -91,27 +91,36 @@ public class StoredServicesController {
     }
     @FXML
     private void deleteAllHandling(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Delete Everything");
-        alert.setHeaderText("Warning");
-        alert.setContentText("Are you sure you want to delete all the services, including any you are using to login to this password manager?");
+        DataStorage storage = new DataStorage("master_login.json");
 
-        ButtonType yesButton = new ButtonType("Delete All");
-        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-        alert.getButtonTypes().setAll(yesButton, cancelButton);
+        if (!storage.getAllData().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Delete Everything");
+            alert.setHeaderText("Warning");
+            alert.setContentText("Are you sure you want to delete all the services, including any you are using to login to this password manager?");
 
-        // Show the alert and wait for user input
-        Optional<ButtonType> result = alert.showAndWait();
+            ButtonType yesButton = new ButtonType("Delete All");
+            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(yesButton, cancelButton);
 
-        if (result.isPresent() && result.get() == yesButton) {
-            DataStorage storage = new DataStorage("master_login.json");
-            storage.clearData();
+            // Show the alert and wait for user input
+            Optional<ButtonType> result = alert.showAndWait();
 
-            Alert confirm = new Alert(Alert.AlertType.INFORMATION);
-            confirm.setTitle("Success");
-            confirm.setHeaderText(null);
-            confirm.setContentText("All data has been deleted. Go back to the main page and click View All Services to see that everything has been deleted.");
-            confirm.showAndWait();
+            if (result.isPresent() && result.get() == yesButton) {
+                storage.clearData();
+
+                Alert confirm = new Alert(Alert.AlertType.INFORMATION);
+                confirm.setTitle("Success");
+                confirm.setHeaderText(null);
+                confirm.setContentText("All data has been deleted. Go back to the main page and click View All Services to see that everything has been deleted.");
+                confirm.showAndWait();
+            }
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Deleting All Services Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("There are currently no services to delete.");
+            alert.showAndWait();
         }
 
     }
