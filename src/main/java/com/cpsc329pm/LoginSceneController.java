@@ -36,7 +36,22 @@ public class LoginSceneController {
 
         boolean success = loginService.authenticate(username, password);
 
-        if (success) {
+        StringBuilder checkString = new StringBuilder();
+
+        if (username.isEmpty()){
+            checkString.append("You have not entered a username.\n");
+        }
+        if (password.isEmpty()){
+            checkString.append("You have not entered a password.\n");
+        }
+
+        if (!checkString.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Failed");
+            alert.setHeaderText(null);
+            alert.setContentText(checkString.toString());
+            alert.showAndWait();
+        }else if (success) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cpsc329pm/ReformattedMainPage.fxml"));
                 Parent root = loader.load(); // Load FXML and get root node
@@ -57,9 +72,9 @@ public class LoginSceneController {
         } else {
             // Create and show an alert when the login fails
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Login Error");
-            alert.setHeaderText("Invalid Credentials");
-            alert.setContentText("You have either not entered your username and password or the username or password you entered is incorrect. Please try again.");
+            alert.setTitle("Login Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("The username or password you entered is incorrect. Please try again.");
 
             // Show the alert
             alert.showAndWait();

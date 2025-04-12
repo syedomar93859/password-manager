@@ -73,8 +73,8 @@ public class RegisterLoginSceneController {
 // Show alert if any issues were found
         if (!checkString.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Incomplete Information");
-            alert.setHeaderText("Please fix the following issues:");
+            alert.setTitle("Registration Failed");
+            alert.setHeaderText(null);
             alert.setContentText(checkString.toString());
             alert.showAndWait();
         } else if (username.equals(againUsername) && password.equals(againPassword)) {
@@ -85,7 +85,7 @@ public class RegisterLoginSceneController {
                 if (masterStorage.getData("master", username) != null) {
                     // Create an alert for existing username
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Account Creation Error");
+                    alert.setTitle("Registration Error");
                     alert.setHeaderText(null);
                     alert.setContentText("Username already exists!");
                     alert.showAndWait();
@@ -105,7 +105,7 @@ public class RegisterLoginSceneController {
         } else {
             // Create an alert for invalid credentials
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Credentials");
+            alert.setTitle("Registration Failed");
             alert.setHeaderText(null);
             alert.setContentText("Please fill out all the boxes and make sure both username and password match.");
             alert.showAndWait();
