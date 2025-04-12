@@ -1,0 +1,7 @@
+References:
+(2021, August 30). JavaFX tutorial for beginners [Video]. YouTube. https://www.youtube.com/watch?v=FG5qv-dEIss&list=PLrzWQu7Ajpi0UFlzvqYNonOV9i_UsmWoz&index=1
+Freepik. (n.d.). Cogwheel icon. https://www.freepik.com/icon/cogwheel_16175244
+Vecteezy. (n.d.). Safe icon vector symbol design illustration. https://www.vecteezy.com/vector-art/26628562-safe-icon-vector-symbol-design-illustration
+PNGEgg. (n.d.). NumPy array data structure Python Stack Overflow pattern. https://www.pngegg.com/en/png-nmpiy
+PinPNG. (n.d.). User menu male icon - user menu icon HD. https://www.pinpng.com/picture/xhixmw_user-menu-male-icon-user-menu-icon-hd/
+
