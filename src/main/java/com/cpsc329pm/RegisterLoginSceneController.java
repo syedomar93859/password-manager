@@ -46,7 +46,38 @@ public class RegisterLoginSceneController {
         String password = newPasswordField.getText().trim();
         String againPassword = confirmPasswordField.getText().trim();
 
-        if (username.equals(againUsername) && password.equals(againPassword)) {
+        StringBuilder checkString = new StringBuilder();
+
+// Username validation
+        if (username.isEmpty()) {
+            checkString.append("Please fill out the Username box.\n");
+        }
+        if (againUsername.isEmpty()) {
+            checkString.append("Please fill out the Confirm Username box.\n");
+        }
+        if (!username.equals(againUsername)) {
+            checkString.append("Username and Confirm Username do not match.\n");
+        }
+
+// Password validation
+        if (password.isEmpty()) {
+            checkString.append("Please fill out the Password box.\n");
+        }
+        if (againPassword.isEmpty()) {
+            checkString.append("Please fill out the Confirm Password box.\n");
+        }
+        if (!password.equals(againPassword)) {
+            checkString.append("Password and Confirm Password do not match.\n");
+        }
+
+// Show alert if any issues were found
+        if (!checkString.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Incomplete Information");
+            alert.setHeaderText("Please fix the following issues:");
+            alert.setContentText(checkString.toString());
+            alert.showAndWait();
+        } else if (username.equals(againUsername) && password.equals(againPassword)) {
             try {
                 DataStorage masterStorage = new DataStorage("master_login.json");
 
@@ -76,7 +107,7 @@ public class RegisterLoginSceneController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Credentials");
             alert.setHeaderText(null);
-            alert.setContentText("Invalid credentials. Please fill out all the boxes and make sure both username and password match.");
+            alert.setContentText("Please fill out all the boxes and make sure both username and password match.");
             alert.showAndWait();
         }
     }

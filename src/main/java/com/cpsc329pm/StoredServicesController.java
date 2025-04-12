@@ -96,7 +96,7 @@ public class StoredServicesController {
         alert.setHeaderText("Warning");
         alert.setContentText("Are you sure you want to delete all the services, including any you are using to login to this password manager?");
 
-        ButtonType yesButton = new ButtonType("Yes");
+        ButtonType yesButton = new ButtonType("Delete All");
         ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(yesButton, cancelButton);
 
