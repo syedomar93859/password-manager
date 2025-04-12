@@ -18,6 +18,15 @@ public class MainPageController {
     @FXML
     private Label currUsername;
 
+    @FXML
+    public void initialize() {
+        // Set the username when the scene initializes
+        String username = UserSession.getUsername();
+        if (username != null && currUsername != null) {
+            currUsername.setText(username);
+        }
+    }
+
     public void setCurrUsername(String username) {
         if (currUsername != null) {
             currUsername.setText(username);
