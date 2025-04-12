@@ -4,25 +4,31 @@ import java.util.*;
 import java.util.regex.*;
 import java.util.List;
 
+/**
+ * This class handles the registration, authentication, and password validation for the master login system.
+ * It provides methods for user registration, password validation, authentication, and account management tasks.
+ */
 public class MasterLogin {
-    private final MasterLoginStorage masterStorage;
-    private static final int MIN_PASSWORD_LENGTH = 8;
-    private static final String[] COMMON_PASSWORDS = {
-        "password", "123456", "qwerty", "admin", "welcome",
-        "letmein", "monkey", "dragon", "baseball", "football"
+    private final MasterLoginStorage masterStorage; // Storage for master login credentials
+    private static final int MIN_PASSWORD_LENGTH = 8; // Minimum length for passwords
+    private static final String[] COMMON_PASSWORDS = { // Common passwords to check against for security
+            "password", "123456", "qwerty", "admin", "welcome",
+            "letmein", "monkey", "dragon", "baseball", "football"
     };
 
+    // Constructor initializes the masterStorage object.
     public MasterLogin() {
         this.masterStorage = new MasterLoginStorage();
     }
 
     /**
-     * Verifies that the username and its confirmation match
-     * @param username The original username
-     * @param confirmUsername The confirmation username
-     * @return true if usernames match, false otherwise
+     * Verifies that the username and its confirmation match.
+     * @param username The original username.
+     * @param confirmUsername The confirmation username.
+     * @return true if usernames match, false otherwise.
      */
     public boolean verifyUsernameMatch(String username, String confirmUsername) {
+        // Ensure both usernames are not null and match each other.
         if (username == null || confirmUsername == null) {
             return false;
         }
@@ -30,12 +36,13 @@ public class MasterLogin {
     }
 
     /**
-     * Verifies that the password and its confirmation match
-     * @param password The original password
-     * @param confirmPassword The confirmation password
-     * @return true if passwords match, false otherwise
+     * Verifies that the password and its confirmation match.
+     * @param password The original password.
+     * @param confirmPassword The confirmation password.
+     * @return true if passwords match, false otherwise.
      */
     public boolean verifyPasswordMatch(String password, String confirmPassword) {
+        // Ensure both passwords are not null and match each other.
         if (password == null || confirmPassword == null) {
             return false;
         }
@@ -43,37 +50,37 @@ public class MasterLogin {
     }
 
     /**
-     * Registers a new user with confirmation checks
-     * @param username The username for the master account
-     * @param confirmUsername The confirmation username
-     * @param password The password for the master account
-     * @param confirmPassword The confirmation password
-     * @throws IllegalArgumentException if inputs are empty, don't match, or password doesn't meet requirements
+     * Registers a new user with username and password confirmation checks.
+     * @param username The username for the master account.
+     * @param confirmUsername The confirmation username.
+     * @param password The password for the master account.
+     * @param confirmPassword The confirmation password.
+     * @throws IllegalArgumentException if inputs are empty or do not match, or if password doesn't meet security requirements.
      */
-    public void registerWithConfirmation(String username, String confirmUsername, 
-                                       String password, String confirmPassword) {
-        // Check if usernames match
+    public void registerWithConfirmation(String username, String confirmUsername,
+                                         String password, String confirmPassword) {
+        // Check if the usernames match
         if (!verifyUsernameMatch(username, confirmUsername)) {
             throw new IllegalArgumentException("Usernames do not match");
         }
 
-        // Check if passwords match
+        // Check if the passwords match
         if (!verifyPasswordMatch(password, confirmPassword)) {
             throw new IllegalArgumentException("Passwords do not match");
         }
 
-        // Proceed with regular registration
+        // Proceed with regular registration if everything is valid
         register(username, password);
     }
 
     /**
-     * Validates if a password meets security requirements
-     * @param password The password to validate
-     * @return true if password meets requirements, false otherwise
+     * Validates if a password meets all security requirements.
+     * @param password The password to validate.
+     * @return true if password meets all security requirements, false otherwise.
      */
     private boolean isValidPassword(String password) {
 
-        // Check minimum length
+        // Check if password length is less than the minimum length
         if (password.length() < MIN_PASSWORD_LENGTH) {
             return false;
         }
@@ -98,48 +105,50 @@ public class MasterLogin {
             return false;
         }
 
-        // Check for spaces
+        // Check for spaces in the password (invalid if contains spaces)
         if (password.contains(" ")) {
             return false;
         }
 
-        // Check against common passwords
+        // Check against common passwords (in lowercase)
         String lowercasePassword = password.toLowerCase();
         for (String common : COMMON_PASSWORDS) {
             if (lowercasePassword.contains(common)) {
-                return false;
+                return false; // Password is weak if it contains a common password
             }
         }
 
-        return true;
+        return true; // Return true if all security checks pass
     }
 
     /**
-     * Gets a description of password requirements
-     * @return String describing password requirements
+     * Provides a string describing password requirements.
+     * @return String describing password requirements.
      */
     public String getPasswordRequirements() {
         return "Password must:\n" +
-               "- Be at least " + MIN_PASSWORD_LENGTH + " characters long\n" +
-               "- Contain at least one uppercase letter\n" +
-               "- Contain at least one lowercase letter\n" +
-               "- Contain at least one number\n" +
-               "- Contain at least one special character (!@#$%^&*(),.?\":{}|<>)\n" +
-               "- Not contain spaces\n" +
-               "- Not contain common words or patterns";
+                "- Be at least " + MIN_PASSWORD_LENGTH + " characters long\n" +
+                "- Contain at least one uppercase letter\n" +
+                "- Contain at least one lowercase letter\n" +
+                "- Contain at least one number\n" +
+                "- Contain at least one special character (!@#$%^&*(),.?\":{}|<>)\n" +
+                "- Not contain spaces\n" +
+                "- Not contain common words or patterns";
     }
 
     /**
-     * Registers a new user by saving their master login credentials
-     * @param username The username for the master account
-     * @param masterPassword The password for the master account
-     * @throws IllegalArgumentException if username or password is empty or password doesn't meet requirements
+     * Registers a new user by saving their master login credentials after validating the password.
+     * @param username The username for the master account.
+     * @param masterPassword The password for the master account.
+     * @throws IllegalArgumentException if username or password is empty or doesn't meet security requirements.
      */
     public void register(String username, String masterPassword) {
-        // Validate inputs
+        // Validate username input
         if (username == null || username.trim().isEmpty()) {
             throw new IllegalArgumentException("Username cannot be empty");
         }
+
+        // Validate password input
         if (masterPassword == null || masterPassword.trim().isEmpty()) {
             throw new IllegalArgumentException("Password cannot be empty");
         }
@@ -149,201 +158,157 @@ public class MasterLogin {
             throw new IllegalArgumentException("Password does not meet security requirements.\n" + getPasswordRequirements());
         }
 
-        // Create a new Data object with the master credentials
+        // Encrypt password and create a Data object with the master credentials
         Data masterData = new Data("master", username, Encryption.encrypt(masterPassword));
-        
-        // Save the master data
+
+        // Save the master data to storage
         masterStorage.saveMasterData(masterData);
     }
 
     /**
-     * Authenticates the username
-     * @param username The username to authenticate
-     * @return true if username is valid and matches stored username, false otherwise
-     * @throws IllegalArgumentException if username is empty
-     */
-//    public boolean authenticateUsername(String username) {
-//        // Validate input
-//        if (username == null || username.trim().isEmpty()) {
-//            return false;
-////            throw new IllegalArgumentException("Username cannot be empty");
-//        }
-//
-//        System.out.println("We have also been here");
-//        // Get the stored master data
-//        Data storedData = masterStorage.getMasterData();
-//        System.out.println(storedData.getUsername() + "      " + storedData.getPassword() + "      " + storedData.getPlatform());
-//
-//        // Check if master data exists and username matches
-//        if (storedData == null){
-//            return false;
-//        }
-//        return storedData != null && storedData.getUsername().equals(username);
-//    }
-
-    /**
-     * Authenticates the password
-     * @param password The password to verify
-     * @return true if password matches stored password, false otherwise
-     * @throws IllegalArgumentException if password is empty
-     */
-//    public boolean authenticatePassword(String password) {
-//        // Validate input
-//        if (password == null || password.trim().isEmpty()) {
-////            throw new IllegalArgumentException("Password cannot be empty");
-//            return false;
-//        }
-//        System.out.println("We have been here");
-//        // Get the stored master data
-//        Data storedData = masterStorage.getMasterData();
-//        System.out.println(storedData.getUsername() + storedData.getPassword() + storedData.getPlatform());
-//
-//        // Check if master data exists and verify password
-//        return storedData != null && Encryption.VerifyPassword(password, storedData.getPassword());
-//    }
-
-    /**
-     * Authenticates both username and password
-     * @param username The username to authenticate
-     * @param masterPassword The password to verify
-     * @return true if both username and password are valid, false otherwise
-     * @throws IllegalArgumentException if username or password is empty
+     * Authenticates the username and password by comparing input with stored credentials.
+     * @param username The username to authenticate.
+     * @param masterPassword The password to verify.
+     * @return true if both username and password match the stored credentials, false otherwise.
      */
     public boolean authenticate(String username, String masterPassword) {
+        // Retrieve all stored master data entries
         List<Data> masterEntries = masterStorage.getAllMasterData();
 
+        // Loop through each stored entry and check if any match
         for (Data entry : masterEntries) {
             if (entry.getPlatform().equals("master") &&
                     entry.getUsername().equals(username) &&
                     Encryption.verifyPassword(masterPassword, entry.getPassword())) {
-                return true; // Found a matching username + password
+                return true; // Match found
             }
         }
         return false; // No match found
     }
 
+    // Below methods are placeholders for other account management tasks
 
     /**
-     * Change user's master password
-     * @param username
-     * @param masterPassword
-     * @param newPassword
-     * @return
+     * Change the user's master password (not yet implemented).
+     * @param username The username of the account.
+     * @param masterPassword The current master password.
+     * @param newPassword The new password.
+     * @return false (not implemented).
      */
     boolean changeMasterPassword(String username, String masterPassword, String newPassword) {
-        return false;
+        return false; // Not yet implemented
     }
 
     /**
-     * Reset password with security question
-     * @param username
-     * @param securityAnswer
-     * @param newPassword
-     * @return
+     * Reset password using a security question (not yet implemented).
+     * @param username The username of the account.
+     * @param securityAnswer The answer to the security question.
+     * @param newPassword The new password.
+     * @return false (not implemented).
      */
     boolean resetPassword(String username, String securityAnswer, String newPassword) {
-        return false;
+        return false; // Not yet implemented
     }
 
     /**
-     * Log the user out
-     * @param username
+     * Log the user out (not yet implemented).
+     * @param username The username of the account.
      */
     void logout(String username) {
-
+        // Not yet implemented
     }
 
     /**
-     * Check if account is locked due to failed logins
-     * @param username
-     * @return
+     * Check if the account is locked due to multiple failed login attempts (not yet implemented).
+     * @param username The username of the account.
+     * @return false (not implemented).
      */
     boolean isLocked(String username) {
-        return false;
+        return false; // Not yet implemented
     }
 
     /**
-     * Get the number of failed login attempts
-     * @param username
-     * @return
+     * Get the number of failed login attempts for an account (not yet implemented).
+     * @param username The username of the account.
+     * @return 0 (not implemented).
      */
     int getFailedAttempts(String username) {
-        return 0;
+        return 0; // Not yet implemented
     }
 
     /**
-     *  Reset failed login counter
-     * @param username
+     * Reset the failed login attempts for an account (not yet implemented).
+     * @param username The username of the account.
      */
     void resetFailedAttempts(String username) {
-
+        // Not yet implemented
     }
 
     /**
-     * Lock account if too many failed login attempts
-     * @param username
-     * @return
+     * Lock an account if too many failed login attempts are made (not yet implemented).
+     * @param username The username of the account.
+     * @return false (not implemented).
      */
     boolean lockAccount(String username) {
-        return false;
+        return false; // Not yet implemented
     }
 
-
     /**
-     * Admin privilege, unlock an account
-     * @param username
-     * @return
+     * Admin privilege to unlock an account (not yet implemented).
+     * @param username The username of the locked account.
+     * @param adminKey The admin key for unlocking.
+     * @return false (not implemented).
      */
     boolean unlockAccount(String username, String adminKey) {
-        return false;
+        return false; // Not yet implemented
     }
 
     /**
-     * Set up security question
-     * @param username
-     * @param question
-     * @param answer
-     * @return
+     * Set up a security question for an account (not yet implemented).
+     * @param username The username of the account.
+     * @param question The security question.
+     * @param answer The security answer.
+     * @return false (not implemented).
      */
     boolean addSecurityQuestion(String username, String question, String answer) {
-        return false;
+        return false; // Not yet implemented
     }
 
     /**
-     * Verify security question answer
-     * @param username
-     * @param answer
-     * @return
+     * Verify the security question answer for an account (not yet implemented).
+     * @param username The username of the account.
+     * @param answer The security question answer.
+     * @return false (not implemented).
      */
     boolean validateSecurityAnswer(String username, String answer) {
-        return false;
+        return false; // Not yet implemented
     }
 
     /**
-     * Delete the user's account
-     * @param username
-     * @param masterPassword
-     * @return
+     * Delete a user account (not yet implemented).
+     * @param username The username of the account.
+     * @param masterPassword The master password for verification.
+     * @return false (not implemented).
      */
     boolean deleteUser(String username, String masterPassword) {
-        return false;
+        return false; // Not yet implemented
     }
 
     /**
-     * Get list of registered usernames
-     * @return
+     * Get a list of all registered usernames (not yet implemented).
+     * @return null (not implemented).
      */
     List<String> getUsernames() {
-        return null;
+        return null; // Not yet implemented
     }
 
     /**
-     * Check if user has input valid username and password
-     * @param username the username that the user input
-     * @param password the password that the user input
-     * @return  return whether the inputs were valid or not
+     * Validate the username and password input (not yet implemented).
+     * @param username The username input.
+     * @param password The password input.
+     * @return false (not implemented).
      */
     boolean validateInput(String username, String password) {
-        return false;
+        return false; // Not yet implemented
     }
 }

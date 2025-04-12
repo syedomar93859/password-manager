@@ -12,54 +12,74 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * Controller class for handling the Delete Service scene in a JavaFX application.
+ * Allows the user to delete a service entry (platform + username) after confirming input.
+ */
 public class DeleteServiceSceneController {
 
     @FXML
-    private Button backButton;
+    private Button backButton; // Button to return to main page
 
     @FXML
-    private Button deleteButton;
+    private Button deleteButton; // Button to initiate deletion process
 
     @FXML
-    private TextField serviceField;
+    private TextField serviceField; // Input field for service/platform name
 
     @FXML
-    private TextField usernameField;
+    private TextField usernameField; // Input field for username
 
     @FXML
-    private TextField confirmUsernameField;
+    private TextField confirmUsernameField; // Input field to confirm username
 
+    /**
+     * Handles the event triggered when the back button is clicked.
+     * Navigates back to the main page while maintaining the current user session.
+     *
+     * @param event The action event from the back button.
+     */
     @FXML
     private void handleBack(ActionEvent event) {
         try {
+            // Get the current stage and load the main page FXML
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ReformattedMainPage.fxml"));
-            //  Now get the controller from the loader
-
             Parent root = loader.load();
 
+            // Pass the current username to the main page controller
             MainPageController controller = loader.getController();
             String currentUser = UserSession.getUsername();
-            controller.setCurrUsername(currentUser);  // Pass username to controller
+            controller.setCurrUsername(currentUser);
+
+            // Switch to the main page scene
             Stage stage = new Stage();
             stage.setTitle("Main Page");
             stage.setScene(new Scene(root));
             stage.show();
+
+            // Close the delete service window
             currentStage.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Log any errors during loading
         }
     }
 
+    /**
+     * Handles the delete button action.
+     * Validates user input and deletes the corresponding service if found.
+     *
+     * @param event The action event from the delete button.
+     */
     @FXML
     private void handleDelete(ActionEvent event) {
-        String platform = serviceField.getText().trim();
-        String username = usernameField.getText().trim();
-        String confirmUser = confirmUsernameField.getText().trim();
+        String platform = serviceField.getText().trim(); // Read and trim service name
+        String username = usernameField.getText().trim(); // Read and trim username
+        String confirmUser = confirmUsernameField.getText().trim(); // Read and trim confirmation field
 
-        StringBuilder checkString = new StringBuilder();
+        StringBuilder checkString = new StringBuilder(); // StringBuilder for error message accumulation
 
-// Username validation
+        // Input validation
         if (platform.isEmpty()) {
             checkString.append("Please fill out the Name of Service box.\n");
         }
@@ -72,48 +92,52 @@ public class DeleteServiceSceneController {
         if (!username.equals(confirmUser)) {
             checkString.append("Username and Confirm Username do not match.\n");
         }
+
+        // If there are input errors, show alert and exit
         if (!checkString.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Deleting Service Failed");
             alert.setHeaderText(null);
             alert.setContentText(checkString.toString());
             alert.showAndWait();
-        }else if (username.equals(confirmUser)) {
+        } else if (username.equals(confirmUser)) {
             try {
-                DataStorage ds = new DataStorage("master_login.json");
+                DataStorage ds = new DataStorage("master_login.json"); // Load data from file
 
-                // Check if the service exists
+                // Check if data entry exists
                 Data existingData = ds.getData(platform, username);
                 if (existingData == null) {
-                    // If the service doesn't exist, show error alert
+                    // Show error if entry doesn't exist
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Delete Service");
                     alert.setHeaderText("Error");
                     alert.setContentText("No service found with the provided platform and username.");
                     alert.showAndWait();
-                    return; // Exit method early if service doesn't exist
+                    return; // Exit early
                 }
 
-                // If service exists, proceed with deletion
+                // If service exists, delete and save
                 ds.deleteData(platform, username);
                 ds.saveToJSON();
 
+                // Show confirmation alert
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Delete Service");
                 alert.setHeaderText("Success");
                 alert.setContentText("Service deleted successfully.");
                 alert.showAndWait();
 
-                // Reload the main page
+                // Reload main page after deletion
                 Parent root = FXMLLoader.load(getClass().getResource("ReformattedMainPage.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
 
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(); // Log exceptions
             }
         }
+
 //        } else {
 //            // If username does not match the confirm username field
 //            Alert alert = new Alert(Alert.AlertType.ERROR);

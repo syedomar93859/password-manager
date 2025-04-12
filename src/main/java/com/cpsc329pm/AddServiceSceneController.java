@@ -11,22 +11,34 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-
+/**
+ * Controller for the Add Service scene.
+ * Handles user input for adding a new platform/service and navigation back to the main page.
+ */
 public class AddServiceSceneController {
 
+    /** TextField for the name of the service/platform */
     @FXML
     private TextField serviceField;
 
+    /** TextField for the username associated with the service */
     @FXML
     private TextField usernameField;
 
+    /** TextField for the password associated with the service */
     @FXML
     private TextField passwordField;
 
+    /** TextField for confirming the entered password */
     @FXML
     private TextField confirmPasswordField;
 
-
+    /**
+     * Handles the "Back" button action.
+     * Navigates the user from the Add Service screen back to the main page.
+     *
+     * @param event ActionEvent triggered by the user.
+     */
     @FXML
     private void handleBack(ActionEvent event) {
         try {
@@ -56,6 +68,12 @@ public class AddServiceSceneController {
         }
     }
 
+    /**
+     * Handles the "Add" button action.
+     * Validates user input, checks for duplicates, and saves new service credentials if valid.
+     *
+     * @param event ActionEvent triggered by the user.
+     */
     @FXML
     private void handleAdd(ActionEvent event) {
         String platform = serviceField.getText().trim();
@@ -65,7 +83,7 @@ public class AddServiceSceneController {
 
         StringBuilder checkString = new StringBuilder();
 
-// Username validation
+        // Username validation
         if (platform.isEmpty()) {
             checkString.append("Please fill out the Name of Service box.\n");
         }
@@ -82,14 +100,14 @@ public class AddServiceSceneController {
             checkString.append("Password and Confirm Password do not match.\n");
         }
 
-// Show alert if any issues were found
+        // Show alert if any issues were found
         if (!checkString.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Adding Service Failed");
             alert.setHeaderText(null);
             alert.setContentText(checkString.toString());
             alert.showAndWait();
-        }else if (password.equals(confirmUser)) {
+        } else if (password.equals(confirmUser)) {
             try {
                 DataStorage ds = new DataStorage("master_login.json");
 
@@ -132,6 +150,5 @@ public class AddServiceSceneController {
 //            alert.showAndWait();
 //        }
     }
-
 
 }
