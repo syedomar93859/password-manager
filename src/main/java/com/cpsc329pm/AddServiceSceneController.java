@@ -81,24 +81,60 @@ public class AddServiceSceneController {
         String password = passwordField.getText().trim();
         String confirmUser = confirmPasswordField.getText().trim();
 
+
+
         StringBuilder checkString = new StringBuilder();
 
         // Username validation
         if (platform.isEmpty()) {
             checkString.append("Please fill out the Name of Service box.\n");
         }
+
         if (username.isEmpty()) {
             checkString.append("Please fill out the Username box.\n");
+        }else if(username.length() < 8){
+            checkString.append("Username must be at least 8 characters long.\n");
         }
+
+        // Password validation
+        MasterLogin masterLogin = new MasterLogin();
+        masterLogin.registerWithConfirmation(username, username, password, confirmUser);
+        boolean firstValidity = masterLogin.isValidPassword(password);
+        boolean secondValidity = masterLogin.isValidPassword(confirmUser);
+
         if (password.isEmpty()) {
             checkString.append("Please fill out the Password box.\n");
+        }else if (!firstValidity){
+            checkString.append("Your Password does not fulfill the requirements.\n");
         }
+
         if (confirmUser.isEmpty()) {
             checkString.append("Please fill out the Confirm Password box.\n");
+        }else if (!secondValidity) {
+            checkString.append("Your Confirm Password does not fulfill the requirements.\n");
         }
+
         if (!password.equals(confirmUser)) {
             checkString.append("Password and Confirm Password do not match.\n");
         }
+
+//        // Username validation
+//        if (platform.isEmpty()) {
+//            checkString.append("Please fill out the Name of Service box.\n");
+//        }
+//        if (username.isEmpty()) {
+//            checkString.append("Please fill out the Username box.\n");
+//        }
+//        if (password.isEmpty()) {
+//            checkString.append("Please fill out the Password box.\n");
+//        }
+//        if (confirmUser.isEmpty()) {
+//            checkString.append("Please fill out the Confirm Password box.\n");
+//        }
+//        if (!password.equals(confirmUser)) {
+//            checkString.append("Password and Confirm Password do not match.\n");
+//        }
+
 
         // Show alert if any issues were found
         if (!checkString.isEmpty()) {
