@@ -169,7 +169,7 @@ public class RegisterLoginSceneController {
     @FXML
     private void reqRegister(ActionEvent event) {
         // Create a help dialog describing valid password rules
-        Alert alert = new Alert(Alert.AlertType.NONE);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Help");
         alert.setHeaderText("What Usernames and Passwords are Valid?");
         alert.setContentText(

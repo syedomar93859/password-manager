@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -185,6 +187,29 @@ public class AddServiceSceneController {
 //            alert.setContentText("Password does not match Confirm Password.");
 //            alert.showAndWait();
 //        }
+    }
+    @FXML
+    private void giveHelp(ActionEvent event) {
+        // Create a help dialog describing valid password rules
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Help");
+        alert.setHeaderText("What Usernames and Passwords are Valid?");
+        alert.setContentText(
+                "Password must:\n" +
+                        "- Be at least 8 characters long\n" +
+                        "- Contain at least one uppercase letter\n" +
+                        "- Contain at least one lowercase letter\n" +
+                        "- Contain at least one number\n" +
+                        "- Contain at least one special character (!@#$%^&*(),.?\":{}|<>)\n" +
+                        "- Cannot contain spaces\n" +
+                        "- Cannot contain common words or patterns"
+        );
+
+        // Add OK button and apply stylesheet for styling
+        alert.getButtonTypes().add(ButtonType.OK);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("color.css").toExternalForm());
+        alert.showAndWait();
     }
 
 }

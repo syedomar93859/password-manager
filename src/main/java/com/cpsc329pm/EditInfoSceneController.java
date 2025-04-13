@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -202,5 +199,29 @@ public class EditInfoSceneController {
         } catch (IOException e) {
             e.printStackTrace(); // Log any loading errors
         }
+    }
+
+    @FXML
+    private void provideHelp(ActionEvent event) {
+        // Create a help dialog describing valid password rules
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Help");
+        alert.setHeaderText("What Usernames and Passwords are Valid?");
+        alert.setContentText(
+                "Password must:\n" +
+                        "- Be at least 8 characters long\n" +
+                        "- Contain at least one uppercase letter\n" +
+                        "- Contain at least one lowercase letter\n" +
+                        "- Contain at least one number\n" +
+                        "- Contain at least one special character (!@#$%^&*(),.?\":{}|<>)\n" +
+                        "- Cannot contain spaces\n" +
+                        "- Cannot contain common words or patterns"
+        );
+
+        // Add OK button and apply stylesheet for styling
+        alert.getButtonTypes().add(ButtonType.OK);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("color.css").toExternalForm());
+        alert.showAndWait();
     }
 }
