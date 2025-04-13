@@ -207,7 +207,7 @@ public class EditInfoSceneController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Help");
         alert.setHeaderText("What Usernames and Passwords are Valid?");
-        alert.setContentText(
+        alert.setContentText("Username must be\n- Be at least 8 characters long\n"+
                 "Password must:\n" +
                         "- Be at least 8 characters long\n" +
                         "- Contain at least one uppercase letter\n" +
@@ -218,10 +218,10 @@ public class EditInfoSceneController {
                         "- Cannot contain common words or patterns"
         );
 
-        // Add OK button and apply stylesheet for styling
-        alert.getButtonTypes().add(ButtonType.OK);
+        // Just apply stylesheet (no need to add OK button)
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(getClass().getResource("color.css").toExternalForm());
+
         alert.showAndWait();
     }
 }
