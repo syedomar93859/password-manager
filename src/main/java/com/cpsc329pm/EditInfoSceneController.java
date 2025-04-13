@@ -50,21 +50,40 @@ public class EditInfoSceneController {
         String newUsername = editUsernameField.getText().trim(); // Read new username
         String newPassword = editPasswordField.getText().trim(); // Read new password
 
+
         StringBuilder checkString = new StringBuilder(); // Collects input error messages
 
-        // Validate input fields
+
+        // Username validation
         if (platform.isEmpty()) {
-            checkString.append("Please fill out the Name of Service Name for Credential Changes box.\n");
+            checkString.append("Please fill out the Service Name for Credential Changes box.\n");
         }
+
         if (username.isEmpty()) {
             checkString.append("Please fill out the Username for Credential Changes box.\n");
+        }else if(username.length() < 8){
+            checkString.append("Username for Credential Changes must be at least 8 characters long.\n");
         }
+
         if (newUsername.isEmpty()) {
             checkString.append("Please fill out the New Username box.\n");
+        }else if(newUsername.length() < 8){
+            checkString.append("New Username must be at least 8 characters long.\n");
         }
+
+        // Password validation
+        MasterLogin masterLogin = new MasterLogin();
+        masterLogin.registerWithConfirmation(username, newUsername, newPassword, newPassword);
+        boolean firstValidity = masterLogin.isValidPassword(newPassword);
+
         if (newPassword.isEmpty()) {
             checkString.append("Please fill out the New Password box.\n");
+        }else if (!firstValidity){
+            checkString.append("Your New Password does not fulfill the requirements.\n");
         }
+
+
+
 
         // Show error alert if validation fails
         if (!checkString.isEmpty()) {
@@ -84,7 +103,7 @@ public class EditInfoSceneController {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Edit Info");
                     alert.setHeaderText("Error");
-                    alert.setContentText("No service found with the provided platform and username.");
+                    alert.setContentText("No service found with the provided Service Name for Credential Changes and Username for Credential Changes.");
                     alert.showAndWait();
                     return;
                 }
