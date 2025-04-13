@@ -77,24 +77,44 @@ public class RegisterLoginSceneController {
         // Username validation
         if (username.isEmpty()) {
             checkString.append("Please fill out the Username box.\n");
+        }else if(username.length() < 8){
+            checkString.append("Username must be at least 8 characters long.\n");
         }
+
         if (againUsername.isEmpty()) {
             checkString.append("Please fill out the Confirm Username box.\n");
+        }else if(againUsername.length() < 8){
+            checkString.append("Confirm Username must be at least 8 characters long.\n");
         }
+
         if (!username.equals(againUsername)) {
             checkString.append("Username and Confirm Username do not match.\n");
         }
 
         // Password validation
+        MasterLogin masterLogin = new MasterLogin();
+        masterLogin.registerWithConfirmation(username, againUsername, password, againPassword);
+        boolean firstValidity = masterLogin.isValidPassword(password);
+        boolean secondValidity = masterLogin.isValidPassword(againPassword);
+
         if (password.isEmpty()) {
             checkString.append("Please fill out the Password box.\n");
+        }else if (!firstValidity){
+                checkString.append("Your Password does not fulfill the requirements.\n");
         }
+
         if (againPassword.isEmpty()) {
             checkString.append("Please fill out the Confirm Password box.\n");
+        }else if (!secondValidity) {
+            checkString.append("Your Confirm Password does not fulfill the requirements.\n");
         }
+
         if (!password.equals(againPassword)) {
             checkString.append("Password and Confirm Password do not match.\n");
         }
+
+
+
 
         // Show alert if any issues were found
         if (!checkString.isEmpty()) {

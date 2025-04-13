@@ -59,18 +59,18 @@ public class MasterLogin {
      */
     public void registerWithConfirmation(String username, String confirmUsername,
                                          String password, String confirmPassword) {
-        // Check if the usernames match
-        if (!verifyUsernameMatch(username, confirmUsername)) {
-            throw new IllegalArgumentException("Usernames do not match");
-        }
-
-        // Check if the passwords match
-        if (!verifyPasswordMatch(password, confirmPassword)) {
-            throw new IllegalArgumentException("Passwords do not match");
-        }
-
-        // Proceed with regular registration if everything is valid
-        register(username, password);
+//        // Check if the usernames match
+//        if (!verifyUsernameMatch(username, confirmUsername)) {
+//            throw new IllegalArgumentException("Usernames do not match");
+//        }
+//
+//        // Check if the passwords match
+//        if (!verifyPasswordMatch(password, confirmPassword)) {
+//            throw new IllegalArgumentException("Passwords do not match");
+//        }
+//
+//        // Proceed with regular registration if everything is valid
+//        register(username, password);
     }
 
     /**
@@ -78,7 +78,7 @@ public class MasterLogin {
      * @param password The password to validate.
      * @return true if password meets all security requirements, false otherwise.
      */
-    private boolean isValidPassword(String password) {
+    public boolean isValidPassword(String password) {
 
         // Check if password length is less than the minimum length
         if (password.length() < MIN_PASSWORD_LENGTH) {
@@ -144,25 +144,25 @@ public class MasterLogin {
      */
     public void register(String username, String masterPassword) {
         // Validate username input
-        if (username == null || username.trim().isEmpty()) {
-            throw new IllegalArgumentException("Username cannot be empty");
-        }
-
-        // Validate password input
-        if (masterPassword == null || masterPassword.trim().isEmpty()) {
-            throw new IllegalArgumentException("Password cannot be empty");
-        }
-
-        // Validate password strength
-        if (!isValidPassword(masterPassword)) {
-            throw new IllegalArgumentException("Password does not meet security requirements.\n" + getPasswordRequirements());
-        }
-
-        // Encrypt password and create a Data object with the master credentials
-        Data masterData = new Data("master", username, Encryption.encrypt(masterPassword));
-
-        // Save the master data to storage
-        masterStorage.saveMasterData(masterData);
+//        if (username == null || username.trim().isEmpty()) {
+//            throw new IllegalArgumentException("Username cannot be empty");
+//        }
+//
+//        // Validate password input
+//        if (masterPassword == null || masterPassword.trim().isEmpty()) {
+//            throw new IllegalArgumentException("Password cannot be empty");
+//        }
+//
+//        // Validate password strength
+//        if (!isValidPassword(masterPassword)) {
+//            throw new IllegalArgumentException("Password does not meet security requirements.\n" + getPasswordRequirements());
+//        }
+//
+//        // Encrypt password and create a Data object with the master credentials
+//        Data masterData = new Data("master", username, Encryption.encrypt(masterPassword));
+//
+//        // Save the master data to storage
+//        masterStorage.saveMasterData(masterData);
     }
 
     /**
